@@ -1,6 +1,19 @@
 {
   "version": "0.0.1",
   "name": "ember-x-editable-addon",
+  "main": [
+    "dist/assets/ember-x-editable.css",
+    "dist/assets/ember-x-editable.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "Brocfile.js",
+    "config",
+    "package.json",
+    "public",
+    "tests",
+    "vendor"
+  ],
   "dependencies": {
     "jquery": "^1.11.1",
     "ember": "1.10.0",
