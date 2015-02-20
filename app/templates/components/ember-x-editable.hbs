@@ -1,0 +1,32 @@
+{{!--Create a text input, if the type is text--}}
+{{#if isText}}
+  <div class="textContainer">
+    {{input classBinding='classes' type='text' value=content}}
+  </div>
+{{/if}}
+{{!--Create a select input, if the type is select--}}
+{{#if isSelect}}
+  <div class="selectContainer">
+    {{view 'select'
+    classBinding='classes'
+    content=content
+    optionValuePath='content.value'
+    optionLabelPath='content.text'
+    value=selectedValue}}
+  </div>
+{{/if}}
+{{!--If editing, show save and cancel buttons--}}
+{{#if isEditing}}
+  <div class="editable-buttons">
+    <button class="btn btn-primary btn-sm editable-submit" {{action 'saveAction'}}><i class="glyphicon
+      glyphicon-ok"></i>
+    </button>
+    <button class="btn btn-default btn-sm editable-cancel" {{action 'cancelAction'}}><i class="glyphicon
+      glyphicon-remove"></i>
+    </button>
+  </div>
+{{/if}}
+{{!--If there is a validator error, show the message--}}
+{{#if errorMessage}}
+  <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
+{{/if}}

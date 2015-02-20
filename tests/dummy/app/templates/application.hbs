@@ -1,3 +1,17 @@
-<h2 id="title">Welcome to Ember.js</h2>
-
-{{outlet}}
+<h2>Text</h2>
+{{ember-x-editable
+cancelAction='cancelAction'
+content='TestString'
+saveAction='saveAction'
+type='text'
+validator=textValidator
+}}
+<h2>Select</h2>
+{{ember-x-editable
+cancelAction='cancelAction'
+content=selectContent
+saveAction='saveAction'
+selectedValue=2
+type='select'
+validator=selectValidator
+}}
