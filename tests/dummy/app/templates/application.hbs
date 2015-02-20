@@ -1,17 +1,25 @@
-<h2>Text</h2>
-{{ember-x-editable
-cancelAction='cancelAction'
-content='TestString'
-saveAction='saveAction'
-type='text'
-validator=textValidator
-}}
-<h2>Select</h2>
-{{ember-x-editable
-cancelAction='cancelAction'
-content=selectContent
-saveAction='saveAction'
-selectedValue=2
-type='select'
-validator=selectValidator
-}}
+<div class="row">
+  <div class="col-sm-4">
+    <h2>Text</h2>
+    {{ember-x-editable
+    cancelAction='cancelAction'
+    content='TestString'
+    saveAction='saveAction'
+    type='text'
+    validator=textValidator
+    }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <h2>Select</h2>
+    {{ember-x-editable
+    cancelAction='cancelAction'
+    content=selectContent
+    saveAction='saveAction'
+    selectedValue=2
+    type='select'
+    validator=selectValidator
+    }}
+  </div>
+</div>

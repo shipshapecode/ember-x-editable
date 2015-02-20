@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['editable-container', 'editable-inline'],
+  tagName: 'span',
   errorMessage: false,
   isValid: function() {
     return !this.get('errorMessage') ? true : false;
@@ -10,10 +12,10 @@ export default Ember.Component.extend({
   classes: function() {
     var classNames = '';
     if (this.get('isText')) {
-      classNames += 'ember-x-editable-text form-control input-sm';
+      classNames += 'ember-x-editable-text input-sm';
     }
     if (this.get('isSelect')) {
-      classNames += 'ember-x-editable-select form-control input-sm';
+      classNames += 'ember-x-editable-select input-sm';
     }
     if (!this.get('isEditing')) {
       classNames += ' is-not-editing';
@@ -60,6 +62,10 @@ export default Ember.Component.extend({
       //Do any validation here, before saving
       if (this.get('isText')) {
         this.set('errorMessage', this.get('validator')(this.get('content')));
+        //If no errors, update the originalValue to be the newly saved value
+        if (!this.get('errorMessage')) {
+          this.set('originalValue', this.get('content'));
+        }
       }
       else if (this.get('isSelect')) {
         this.set('errorMessage', this.get('validator')(this.get('selectedValue')));
