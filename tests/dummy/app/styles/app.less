@@ -1,3 +1,15 @@
+.borderBottom {
+  position: relative;
+  left: 0;
+  bottom: 7px;
+  height: 2px;
+  border-bottom: dashed 1px #08c;
+}
+
+.shouldNotDisplay {
+  display: none;
+}
+
 .editable-buttons {
   display: inline-block;
   vertical-align: top;
@@ -18,22 +30,26 @@
   display: inline-block;
   width: 68%;
   .ember-x-editable-text {
-    width: 100%;
+    font-size: 12.5px;
+    font-weight: 700;
     &.is-editing {
       background: white;
-      padding: 4px 10px;
+      padding: 4px 5px;
       -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
       box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+      width: 100%;
     }
     &.is-not-editing {
       background: transparent;
       border: none;
       border-color: transparent;
-      border-bottom: dashed 1px #08c;
       cursor: pointer;
       -webkit-box-shadow: none;
       box-shadow: none;
       padding: 4px 1px;
+    }
+    &.is-empty{
+      font-style: italic;
     }
   }
 }
@@ -41,8 +57,14 @@
 .selectContainer {
   display: inline-block;
   overflow: hidden;
+  position: relative;
   width: 68%;
+  .borderBottom{
+    bottom: 10px;
+  }
   .ember-x-editable-select {
+    font-size: 12.5px;
+    font-weight: 700;
     &.is-editing {
       background: white;
       padding: 0px 10px;
@@ -63,7 +85,6 @@
       border: none;
       /* needed for Firefox: */
       overflow: hidden;
-      border-bottom: dashed 1px #08c;
       width: 120%;
     }
   }

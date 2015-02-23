@@ -4,6 +4,7 @@
     {{#if isText}}
       <div class="textContainer">
         {{input classBinding='classes' type='text' value=content}}
+        <div class="borderBottom {{if isEditing 'shouldNotDisplay'}}"></div>
       </div>
     {{/if}}
     {{!--Create a select input, if the type is select--}}
@@ -15,6 +16,7 @@
         optionValuePath='content.value'
         optionLabelPath='content.text'
         value=selectedValue}}
+        <div class="borderBottom {{if isEditing 'shouldNotDisplay'}}"></div>
       </div>
     {{/if}}
     {{!--If editing, show save and cancel buttons--}}
