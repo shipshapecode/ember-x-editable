@@ -96,6 +96,7 @@ export default Ember.Component.extend({
         if (this.get('validator')) {
           this.set('errorMessage', this.get('validator')(this.get('selectedValue')));
         }
+        this.set('originalValue', this.get('selectedValue'));
       }
       //If no errors, go ahead and save
       if (!this.get('errorMessage')) {
