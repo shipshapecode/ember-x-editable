@@ -1,4 +1,4 @@
-/* globals calculateSize */
+/* globals calculateSize, WebFont */
 import Ember from 'ember';
 import $ from 'jquery';
 
@@ -139,18 +139,37 @@ export default Ember.Component.extend({
   },
   didInsertElement: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      //Store the original value, so we can restore it on cancel click
-      if (this.get('isText')) {
-        if (!this.get('content') || this.get('content') === '') {
-          this.set('content', 'Empty');
+      var didInsertElementLogic = function() {
+        if (this.get('isText')) {
+          if (!this.get('content') || this.get('content') === '') {
+            this.set('content', 'Empty');
+          }
+          this.changeTextUnderlineSize();
+          //Store the original value, so we can restore it on cancel click
+          this.set('originalValue', this.get('content'));
         }
-        this.changeTextUnderlineSize();
-        this.set('originalValue', this.get('content'));
+        if (this.get('isSelect') && this.get('selectedValue')) {
+          //Store the original value, so we can restore it on cancel click
+          this.set('originalValue', this.get('selectedValue'));
+          this.changeSelectedUnderlineSize();
+        }
+      }.bind(this);
+
+      // If custom font families are being loaded with @font-face,
+      // we need to wait until the font is loaded to display the inputs
+      if (this.get('fontFamilyConfig')) {
+        WebFont.load({
+          custom: {
+            families: this.get('fontFamilyConfig')
+          },
+          active: function() {
+            didInsertElementLogic();
+          }.bind(this)
+        });
+      } else {
+        didInsertElementLogic();
       }
-      if (this.get('isSelect') && this.get('selectedValue')) {
-        this.set('originalValue', this.get('selectedValue'));
-        this.changeSelectedUnderlineSize();
-      }
+
     });
   }
 });

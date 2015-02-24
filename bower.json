@@ -26,6 +26,7 @@
     "ember-qunit": "0.2.8",
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
-    "bootstrap": "~3.3"
+    "bootstrap": "~3.3",
+    "bower-webfontloader": "~1.5.13"
   }
 }
