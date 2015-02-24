@@ -3,8 +3,9 @@ import Validators from '../utils/validators';
 
 export default Ember.Controller.extend({
   selectContent: Ember.A([
-    {value: 1, text: 'Army'},
-    {value: 2, text: 'Navy'}
+    {value: 1, text: 'TestString'},
+    {value: 2, text: 'LongerTestString'},
+    {value: 3, text: 'ReallyReallyLongTestString'}
   ]),
   selectValidator: null,
   textValidator: Validators.RequiredString,

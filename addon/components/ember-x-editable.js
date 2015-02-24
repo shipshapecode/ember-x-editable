@@ -12,34 +12,24 @@ export default Ember.Component.extend({
   mouseInsideComponent: false,
   originalValue: null,
   changeSelectedUnderlineSize: function() {
-    if (this.get('isSelect')) {
-      var fontFamily = this.$('select').css('font-family');
-      var fontSize = this.$('select').css('font-size');
-      var fontWeight = this.$('select').css('font-weight');
-      var size = calculateSize(this.$('select option:selected').text(), {
-        font: fontFamily,
-        fontSize: fontSize,
-        fontWeight: fontWeight
-      });
-      this.$('.borderBottom').width(size.width);
-    }
-  }.observes('selectedValue'),
-  changeTextUnderlineSize: function() {
-    if (this.get('isText')) {
-      if (this.get('content') && this.get('content').length > 0) {
-        var fontFamily = this.$('input').css('font-family');
-        var fontSize = this.$('input').css('font-size');
-        var fontWeight = this.$('input').css('font-weight');
-        this.$('input').attr('size', this.get('content').length * 8 + 2);
-        var size = calculateSize(this.get('content'), {
-          font: fontFamily,
-          fontSize: fontSize,
-          fontWeight: fontWeight
-        });
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      if (this.get('isSelect')) {
+        var size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
         this.$('.borderBottom').width(size.width);
       }
-    }
-  }.observes('content'),
+    });
+  },
+  changeTextUnderlineSize: function() {
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      if (this.get('isText')) {
+        if (this.get('content') && this.get('content').length > 0) {
+          var size = this.getTextWidth(this.$('input'), this.get('content'));
+          this.$('input').attr('size', this.get('content').length + 4);
+          this.$('.borderBottom').width(size.width);
+        }
+      }
+    });
+  },
   classes: function() {
     var classNames = '';
     if (this.get('isText')) {
@@ -83,13 +73,22 @@ export default Ember.Component.extend({
   mouseLeave: function() {
     this.set('mouseInsideComponent', false);
   },
-  getTextWidth: function() {
-    var html_org = $(this).html();
-    var html_calc = '<span>' + html_org + '</span>';
-    $(this).html(html_calc);
-    var width = $(this).find('span:first').width();
-    $(this).html(html_org);
-    return width;
+  /**
+   * Calculate the width of a text string, given the element to grab styles from and the text string
+   * @param element The element the text is inside, this is used to get font size, weight, etc
+   * @param text The text string we are measuring
+   * @returns {*}
+   */
+  getTextWidth: function(element, text) {
+    var fontFamily = element.css('font-family');
+    var fontSize = element.css('font-size');
+    var fontWeight = element.css('font-weight');
+    var size = calculateSize(text, {
+      font: fontFamily,
+      fontSize: fontSize,
+      fontWeight: fontWeight
+    });
+    return size;
   },
   actions: {
     cancelAction: function() {
@@ -117,17 +116,24 @@ export default Ember.Component.extend({
         else if (!this.get('content') || this.get('content') === '') {
           this.set('content', 'Empty');
         }
+        //If no errors, go ahead and save
+        if (!this.get('errorMessage')) {
+          this.set('isEditing', false);
+          this.changeTextUnderlineSize();
+          this.sendAction('saveAction');
+        }
       }
       else if (this.get('isSelect')) {
         if (this.get('validator')) {
           this.set('errorMessage', this.get('validator')(this.get('selectedValue')));
         }
         this.set('originalValue', this.get('selectedValue'));
-      }
-      //If no errors, go ahead and save
-      if (!this.get('errorMessage')) {
-        this.set('isEditing', false);
-        this.sendAction('saveAction');
+        //If no errors, go ahead and save
+        if (!this.get('errorMessage')) {
+          this.set('isEditing', false);
+          this.changeSelectedUnderlineSize();
+          this.sendAction('saveAction');
+        }
       }
     }
   },
@@ -146,9 +152,5 @@ export default Ember.Component.extend({
         this.changeSelectedUnderlineSize();
       }
     });
-
-  },
-  valueChanged: function() {
-
-  }.observes('selectedValue')
+  }
 });
