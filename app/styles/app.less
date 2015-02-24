@@ -31,6 +31,11 @@
   width: 68%;
   .ember-x-editable-text {
     font-size: 12.5px;
+    &::-ms-clear {
+      display: none;
+      width: 0;
+      height: 0;
+    }
     &.is-editing {
       background: white;
       padding: 4px 5px;
@@ -48,7 +53,7 @@
       box-shadow: none;
       padding: 4px 1px;
     }
-    &.is-empty{
+    &.is-empty {
       font-style: italic;
     }
   }
@@ -59,7 +64,7 @@
   overflow: hidden;
   position: relative;
   width: 68%;
-  .borderBottom{
+  .borderBottom {
     bottom: 10px;
   }
   .ember-x-editable-select {

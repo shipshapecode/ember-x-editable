@@ -24,7 +24,7 @@ export default Ember.Component.extend({
       if (this.get('isText')) {
         if (this.get('content') && this.get('content').length > 0) {
           var size = this.getTextWidth(this.$('input'), this.get('content'));
-          this.$('input').attr('size', this.get('content').length + 4);
+          this.$('input').css('width', size.width + 10);
           this.$('.borderBottom').width(size.width);
         }
       }
