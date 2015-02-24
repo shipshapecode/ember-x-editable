@@ -30,6 +30,11 @@ export default Ember.Component.extend({
       }
     });
   },
+  makeFullWidthWhenEditing: function() {
+    if (this.get('isText')) {
+      this.$('input').width('100%');
+    }
+  }.observes('isEditing'),
   classes: function() {
     var classNames = '';
     if (this.get('isText')) {
