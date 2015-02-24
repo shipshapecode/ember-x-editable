@@ -35,5 +35,6 @@ module.exports = {
 
     this.app.import(app.bowerDirectory + '/bootstrap/dist/js/bootstrap.js');
 
+    this.app.import('vendor/calculate-size/calculate-size.js');
   }
 };

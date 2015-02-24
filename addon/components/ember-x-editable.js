@@ -1,4 +1,6 @@
+/* globals calculateSize */
 import Ember from 'ember';
+import $ from 'jquery';
 
 export default Ember.Component.extend({
   classNames: ['editable-container', 'editable-inline'],
@@ -11,14 +13,30 @@ export default Ember.Component.extend({
   originalValue: null,
   changeSelectedUnderlineSize: function() {
     if (this.get('isSelect')) {
-      this.$('.borderBottom').width(this.$('select option:selected').text().length * 8 + 'px');
+      var fontFamily = this.$('select').css('font-family');
+      var fontSize = this.$('select').css('font-size');
+      var fontWeight = this.$('select').css('font-weight');
+      var size = calculateSize(this.$('select option:selected').text(), {
+        font: fontFamily,
+        fontSize: fontSize,
+        fontWeight: fontWeight
+      });
+      this.$('.borderBottom').width(size.width);
     }
   }.observes('selectedValue'),
   changeTextUnderlineSize: function() {
     if (this.get('isText')) {
       if (this.get('content') && this.get('content').length > 0) {
+        var fontFamily = this.$('input').css('font-family');
+        var fontSize = this.$('input').css('font-size');
+        var fontWeight = this.$('input').css('font-weight');
         this.$('input').attr('size', this.get('content').length * 8 + 2);
-        this.$('.borderBottom').width(this.get('content').length * 8 + 'px');
+        var size = calculateSize(this.get('content'), {
+          font: fontFamily,
+          fontSize: fontSize,
+          fontWeight: fontWeight
+        });
+        this.$('.borderBottom').width(size.width);
       }
     }
   }.observes('content'),
@@ -64,6 +82,14 @@ export default Ember.Component.extend({
   },
   mouseLeave: function() {
     this.set('mouseInsideComponent', false);
+  },
+  getTextWidth: function() {
+    var html_org = $(this).html();
+    var html_calc = '<span>' + html_org + '</span>';
+    $(this).html(html_calc);
+    var width = $(this).find('span:first').width();
+    $(this).html(html_org);
+    return width;
   },
   actions: {
     cancelAction: function() {
@@ -116,10 +142,9 @@ export default Ember.Component.extend({
         this.set('originalValue', this.get('content'));
       }
       if (this.get('isSelect') && this.get('selectedValue')) {
-        this.$('.borderBottom').width(this.$('select option:selected').text().length * 8 + 'px');
         this.set('originalValue', this.get('selectedValue'));
+        this.changeSelectedUnderlineSize();
       }
-      this.changeTextUnderlineSize();
     });
 
   },
