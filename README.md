@@ -33,7 +33,7 @@ content=selectContent
 fontFamilyConfig=fontFamilyConfig
 isFieldEditing=isFieldEditing
 saveAction='saveAction'
-selectedValue=selectedValue
+selectedValue=2
 type='select'
 validator=selectValidator
 }}
