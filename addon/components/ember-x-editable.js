@@ -1,6 +1,5 @@
 /* globals calculateSize, WebFont */
 import Ember from 'ember';
-import $ from 'jquery';
 
 export default Ember.Component.extend({
   classNames: ['editable-container', 'editable-inline'],
@@ -14,26 +13,41 @@ export default Ember.Component.extend({
   changeSelectedUnderlineSize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('isSelect')) {
-        var size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
-        this.$('.borderBottom').width(size.width);
+        if (!this.get('isEditing')) {
+          var size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
+          this.$('.selectContainer').css('width', 'auto');
+          this.$('select').width(size.width);
+          this.$('.borderBottom').css('width', size.width);
+        } else {
+          this.$('.selectContainer').css('width', '68%');
+          this.$('select').css('width', '100%');
+        }
       }
     });
-  },
+  }.observes('isEditing'),
   changeTextUnderlineSize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      if (this.get('isText')) {
+      if (this.get('isText') && !this.get('isEditing')) {
         if (this.get('content') && this.get('content').length > 0) {
           var size = this.getTextWidth(this.$('input'), this.get('content'));
-          this.$('input').css('width', size.width + 10);
+          this.$('.textContainer').width('68%');
+          this.$('input').width(size.width + 10);
           this.$('.borderBottom').width(size.width);
         }
       }
     });
-  },
+  }.observes('isEditing'),
   makeFullWidthWhenEditing: function() {
     if (this.get('isText')) {
       this.$('input').width('100%');
     }
+  }.observes('isEditing'),
+  /**
+   * Sets the isFieldEditing property to the current isEditing status.
+   * This is used to pass isEditing out to the controller, if you need it
+   */
+  setFieldIsEditing: function() {
+    this.set('isFieldEditing', this.get('isEditing'));
   }.observes('isEditing'),
   classes: function() {
     var classNames = '';
