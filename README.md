@@ -47,7 +47,7 @@ validator=selectValidator
 - ```type``` (required) a string representing the type of the editable. For a text input, it will be 'text'
 - ```validator``` (optional) a function reference to execute against the content string before saving
 
-This README outlines the details of collaborating on this Ember addon.
+# Instructions for contributing to this addon:
 
 ## Installation
 
