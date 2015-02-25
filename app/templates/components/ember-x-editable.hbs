@@ -4,6 +4,10 @@
     {{#if isText}}
       <div class="textContainer">
         {{input classBinding='classes' type='text' value=content}}
+        {{!--If there is a validator error, show the message--}}
+        {{#if errorMessage}}
+          <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
+        {{/if}}
         <div class="borderBottom {{if isEditing 'shouldNotDisplay'}}"></div>
       </div>
     {{/if}}
@@ -16,6 +20,10 @@
         optionValuePath='content.value'
         optionLabelPath='content.text'
         value=selectedValue}}
+        {{!--If there is a validator error, show the message--}}
+        {{#if errorMessage}}
+          <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
+        {{/if}}
         <div class="borderBottom {{if isEditing 'shouldNotDisplay'}}"></div>
       </div>
     {{/if}}
@@ -29,10 +37,6 @@
       glyphicon-remove"></i>
         </button>
       </div>
-    {{/if}}
-    {{!--If there is a validator error, show the message--}}
-    {{#if errorMessage}}
-      <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
     {{/if}}
   </div>
 </div>
