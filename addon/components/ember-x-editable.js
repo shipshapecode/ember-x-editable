@@ -31,8 +31,8 @@ export default Ember.Component.extend({
   changeTextUnderlineSize: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
       if (this.get('isText') && !this.get('isEditing')) {
-        if (this.get('content') && this.get('content').length > 0) {
-          var size = this.getTextWidth(this.$('input'), this.get('content'));
+        if (this.get('value') && this.get('value').length > 0) {
+          var size = this.getTextWidth(this.$('input'), this.get('value'));
           this.$('.textContainer').width('68%');
           this.$('input').width(size.width + 10);
           this.$('.borderBottom').width(size.width);
@@ -61,7 +61,7 @@ export default Ember.Component.extend({
       classNames += 'ember-x-editable-select input-sm';
     }
     if (!this.get('isEditing')) {
-      if (!this.get('content') || this.get('content') === '' || this.get('content') === 'Empty') {
+      if (!this.get('value') || this.get('value') === '' || this.get('value') === 'Empty') {
         classNames += ' is-empty';
       }
       classNames += ' is-not-editing';
@@ -78,8 +78,8 @@ export default Ember.Component.extend({
     return this.get('type') === 'text';
   }.property('type'),
   focusIn: function() {
-    if (this.get('content') === 'Empty') {
-      this.set('content', '');
+    if (this.get('value') === 'Empty') {
+      this.set('value', '');
     }
     this.set('isValid', true);
     this.set('isEditing', true);
@@ -116,10 +116,10 @@ export default Ember.Component.extend({
     cancelAction: function() {
       this.set('isEditing', false);
       if (this.get('isSelect')) {
-        this.set('selectedValue', this.get('originalValue'));
+        this.set('value', this.get('originalValue'));
       }
       if (this.get('isText')) {
-        this.set('content', this.get('originalValue'));
+        this.set('value', this.get('originalValue'));
       }
       this.set('errorMessage', false);
       this.sendAction('cancelAction');
@@ -128,15 +128,15 @@ export default Ember.Component.extend({
       //Do any validation here, before saving
       if (this.get('isText')) {
         if (this.get('validator')) {
-          this.set('errorMessage', this.get('validator')(this.get('content')));
+          this.set('errorMessage', this.get('validator')(this.get('value')));
 
           //If no errors, update the originalValue to be the newly saved value
           if (!this.get('errorMessage')) {
-            this.set('originalValue', this.get('content'));
+            this.set('originalValue', this.get('value'));
           }
         }
-        else if (!this.get('content') || this.get('content') === '') {
-          this.set('content', 'Empty');
+        else if (!this.get('value') || this.get('value') === '') {
+          this.set('value', 'Empty');
         }
         //If no errors, go ahead and save
         if (!this.get('errorMessage')) {
@@ -147,9 +147,9 @@ export default Ember.Component.extend({
       }
       else if (this.get('isSelect')) {
         if (this.get('validator')) {
-          this.set('errorMessage', this.get('validator')(this.get('selectedValue')));
+          this.set('errorMessage', this.get('validator')(this.get('value')));
         }
-        this.set('originalValue', this.get('selectedValue'));
+        this.set('originalValue', this.get('value'));
         //If no errors, go ahead and save
         if (!this.get('errorMessage')) {
           this.set('isEditing', false);
@@ -163,16 +163,16 @@ export default Ember.Component.extend({
     Ember.run.scheduleOnce('afterRender', this, function() {
       var didInsertElementLogic = function() {
         if (this.get('isText')) {
-          if (!this.get('content') || this.get('content') === '') {
-            this.set('content', 'Empty');
+          if (!this.get('value') || this.get('value') === '') {
+            this.set('value', 'Empty');
           }
           this.changeTextUnderlineSize();
           //Store the original value, so we can restore it on cancel click
-          this.set('originalValue', this.get('content'));
+          this.set('originalValue', this.get('value'));
         }
-        if (this.get('isSelect') && this.get('selectedValue')) {
+        if (this.get('isSelect') && this.get('value')) {
           //Store the original value, so we can restore it on cancel click
-          this.set('originalValue', this.get('selectedValue'));
+          this.set('originalValue', this.get('value'));
           this.changeSelectedUnderlineSize();
         }
       }.bind(this);

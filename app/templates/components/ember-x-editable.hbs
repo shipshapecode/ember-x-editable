@@ -3,7 +3,7 @@
     {{!--Create a text input, if the type is text--}}
     {{#if isText}}
       <div class="textContainer">
-        {{input classBinding='classes' type='text' value=content}}
+        {{input classBinding='classes' type='text' value=value}}
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
@@ -19,7 +19,7 @@
         content=content
         optionValuePath='content.value'
         optionLabelPath='content.text'
-        value=selectedValue}}
+        value=value}}
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
