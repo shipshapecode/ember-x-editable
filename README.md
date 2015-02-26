@@ -9,21 +9,20 @@ Currently, Bootstrap is bundled with this addon. Eventually, I'd like to just ad
 ```hbs
 {{ember-x-editable
 cancelAction='cancelAction'
-content='TestString'
 fontFamilyConfig=fontFamilyConfig
 isFieldEditing=isFieldEditing
 saveAction='saveAction'
 type='text'
 validator=textValidator
-}}
+value='TestString'}}
 ```
 - ```cancelAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the cancel x.
-- ```content``` a string of text to display 
 - ```fontFamilyConfig``` an array of custom font families that will be passed to the font loader and ensured to be loaded and used for calculating the width of the text in pixels
 - ```isFieldEditing``` a boolean variable that allows you to access the isEditing value outside of the component
 - ```saveAction``` a string representing the action on the controller that you want to execute whenever the user clicks the save check mark.
 - ```type``` (required) a string representing the type of the editable. For a text input, it will be 'text'
 - ```validator``` (optional) a function reference to execute against the content string before saving
+- ```value``` a string of text to display 
 
 ### Dropdown (Select)
 ```hbs
@@ -33,19 +32,18 @@ content=selectContent
 fontFamilyConfig=fontFamilyConfig
 isFieldEditing=isFieldEditing
 saveAction='saveAction'
-selectedValue=2
 type='select'
 validator=selectValidator
-}}
+value=2}}
 ```
 - ```cancelAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the cancel x.
 - ```content``` An array of objects of the format: ```[{value: 1, text: 'TestString}]``` 
 - ```fontFamilyConfig``` an array of custom font families that will be passed to the font loader and ensured to be loaded and used for calculating the width of the text in pixels
 - ```isFieldEditing``` a boolean variable that allows you to access the isEditing value outside of the component
 - ```saveAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the save check mark.
-- ```selectedValue``` the 'value' of the object in the content array that should be selected
 - ```type``` (required) a string representing the type of the editable. For a text input, it will be 'text'
 - ```validator``` (optional) a function reference to execute against the content string before saving
+- ```value``` the 'value' of the object in the content array that should be selected
 
 # Instructions for contributing to this addon:
 
