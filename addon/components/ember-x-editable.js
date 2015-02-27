@@ -68,8 +68,11 @@ export default Ember.Component.extend({
     } else {
       classNames += ' is-editing';
     }
+    if (this.get('errorMessage')) {
+      classNames += ' error';
+    }
     return classNames;
-  }.property('isEditing'),
+  }.property('isEditing', 'errorMessage'),
   isEditing: false,
   isSelect: function() {
     return this.get('type') === 'select';
