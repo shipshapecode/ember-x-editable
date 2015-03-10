@@ -14,6 +14,8 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
+    this.app.import('vendor/ember-x-editable-addon.css');
+
     this.app.import(app.bowerDirectory + '/bower-webfontloader/webfont.js');
 
     this.app.import('vendor/calculate-size/calculate-size.js');
