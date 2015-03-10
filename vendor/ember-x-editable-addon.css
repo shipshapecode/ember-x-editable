@@ -1,7 +1,6 @@
 .borderBottom {
   position: relative;
   left: 0;
-  bottom: 7px;
   height: 2px;
   border-bottom: dashed 1px #08c;
 }
@@ -23,6 +22,9 @@
 .textContainer {
   display: inline-block;
 }
+.textContainer .borderBottom {
+  bottom: 7px;
+}
 .textContainer .ember-x-editable-text {
   font-size: 12.5px;
 }
@@ -34,8 +36,8 @@
 .textContainer .ember-x-editable-text.is-editing {
   background: white;
   padding: 4px 5px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   width: 100%;
 }
 .textContainer .ember-x-editable-text.is-editing.error {
@@ -61,7 +63,7 @@
   width: auto;
 }
 .selectContainer .borderBottom {
-  bottom: 6px;
+  bottom: 5px;
 }
 .selectContainer .ember-x-editable-select {
   font-size: 12.5px;
@@ -69,8 +71,8 @@
 .selectContainer .ember-x-editable-select.is-editing {
   background: white;
   padding: 0px 10px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   width: 100%;
 }
 .selectContainer .ember-x-editable-select.is-not-editing {
@@ -85,6 +87,7 @@
   background-color: transparent;
   border: none;
   font-weight: 700;
+  /* needed for Firefox: */
   overflow: hidden;
   width: 120%;
 }
