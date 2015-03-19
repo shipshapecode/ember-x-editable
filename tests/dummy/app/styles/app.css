@@ -1,0 +1,20 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,700italic|Oleo+Script:400,700);
+
+body {
+  margin: 0;
+  background-color: #2ec4b3;
+  background-image: -webkit-linear-gradient(-45deg, #2ec4b3, #80b4be);
+  background-image: -moz-linear-gradient(-45deg, #2ec4b3, #80b4be);
+  background-image: -o-linear-gradient(-45deg, #2ec4b3, #80b4be);
+  background-image: linear-gradient(-45deg, #2ec4b3, #80b4be);
+  background-attachment: fixed;
+  font-family: 'Lato', sans-serif;
+}
+
+h1{
+  font-size: 6vw;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+  font-family: 'Oleo Script', cursive;
+}
