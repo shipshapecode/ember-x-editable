@@ -34,7 +34,7 @@
     "ember-cli-uglify": "1.0.1",
     "ember-export-application-global": "^1.0.2",
     "ember-getowner-polyfill": "1.0.0",
-    "ember-power-select": "0.8.1",
+    "ember-truth-helpers": "1.2.0",
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },

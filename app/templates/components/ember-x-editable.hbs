@@ -14,14 +14,11 @@
     {{!--Create a select input, if the type is select--}}
     {{#if isSelect}}
       <div class="selectContainer">
-        {{#power-select
-        classBinding='classes'
-        onchange=(action 'changeAction')
-        options=content
-        selected=value
-        as |option|}}
-          <div>{{option}}</div>
-        {{/power-select}}
+        <select onchange={{action (mut value) value="target.value"}}>
+          {{#each content as |option|}}
+            <option value={{option}} selected={{eq value option.value}}>{{option.text}}</option>
+          {{/each}}
+        </select>
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>

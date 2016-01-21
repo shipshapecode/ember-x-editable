@@ -15,9 +15,6 @@ export default Ember.Controller.extend({
     cancelAction: function () {
       console.log('cancel');
     },
-    changeAction: function () {
-      console.log('changed');
-    },
     saveAction: function () {
       console.log('save');
     }
