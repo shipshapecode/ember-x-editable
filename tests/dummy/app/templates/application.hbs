@@ -25,7 +25,7 @@
     saveAction='saveAction'
     type='text'
     validator=textValidator
-    value='TestString'
+    value=textValue
     }}
   </div>
 </div>
@@ -34,18 +34,20 @@
     <h2>Select</h2>
     {{ember-x-editable
     cancelAction='cancelAction'
+    changeAction='changeAction'
     content=selectContent
     fontFamilyConfig=fontFamilyConfig
     isFieldEditing=isFieldEditing
     saveAction='saveAction'
     type='select'
     validator=selectValidator
-    value=2
+    value=selectValue
     }}
   </div>
 </div>
 <br/>
 <div class="row">
-  <a href="https://github.com/rwwagner90/ember-x-editable-addon" class="col-sm-2 col-sm-offset-4 btn btn-default">Github</a>
+  <a href="https://github.com/rwwagner90/ember-x-editable-addon"
+     class="col-sm-2 col-sm-offset-4 btn btn-default">Github</a>
   <a href="https://github.com/rwwagner90/ember-x-editable-addon/blob/master/README.md" class="col-sm-2 btn btn-default">Docs</a>
 </div>

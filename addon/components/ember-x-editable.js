@@ -5,13 +5,13 @@ export default Ember.Component.extend({
   classNames: ['editable-container', 'editable-inline'],
   tagName: 'span',
   errorMessage: false,
-  isValid: function() {
+  isValid: function () {
     return !this.get('errorMessage') ? true : false;
   }.property('errorMessage'),
   mouseInsideComponent: false,
   originalValue: null,
-  changeSelectedUnderlineSize: function() {
-    Ember.run.scheduleOnce('afterRender', this, function() {
+  changeSelectedUnderlineSize: function () {
+    Ember.run.scheduleOnce('afterRender', this, function () {
       if (this.get('isSelect')) {
         if (!this.get('isEditing')) {
           var size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
@@ -28,8 +28,8 @@ export default Ember.Component.extend({
       }
     });
   }.observes('isEditing'),
-  changeTextUnderlineSize: function() {
-    Ember.run.scheduleOnce('afterRender', this, function() {
+  changeTextUnderlineSize: function () {
+    Ember.run.scheduleOnce('afterRender', this, function () {
       if (this.get('isText') && !this.get('isEditing')) {
         if (this.get('value') && this.get('value').length > 0) {
           var size = this.getTextWidth(this.$('input'), this.get('value'));
@@ -40,7 +40,7 @@ export default Ember.Component.extend({
       }
     });
   }.observes('isEditing'),
-  makeFullWidthWhenEditing: function() {
+  makeFullWidthWhenEditing: function () {
     if (this.get('isText')) {
       this.$('input').width('100%');
     }
@@ -49,10 +49,10 @@ export default Ember.Component.extend({
    * Sets the isFieldEditing property to the current isEditing status.
    * This is used to pass isEditing out to the controller, if you need it
    */
-  setFieldIsEditing: function() {
+  setFieldIsEditing: function () {
     this.set('isFieldEditing', this.get('isEditing'));
   }.observes('isEditing'),
-  classes: function() {
+  classes: function () {
     var classNames = '';
     if (this.get('isText')) {
       classNames += 'ember-x-editable-text input-sm';
@@ -74,28 +74,28 @@ export default Ember.Component.extend({
     return classNames;
   }.property('isEditing', 'errorMessage'),
   isEditing: false,
-  isSelect: function() {
+  isSelect: function () {
     return this.get('type') === 'select';
   }.property('type'),
-  isText: function() {
+  isText: function () {
     return this.get('type') === 'text';
   }.property('type'),
-  focusIn: function() {
+  focusIn: function () {
     if (this.get('value') === 'Empty') {
       this.set('value', '');
     }
     this.set('isValid', true);
     this.set('isEditing', true);
   },
-  focusOut: function() {
+  focusOut: function () {
     if (!this.get('mouseInsideComponent')) {
       this.send('cancelAction');
     }
   },
-  mouseEnter: function() {
+  mouseEnter: function () {
     this.set('mouseInsideComponent', true);
   },
-  mouseLeave: function() {
+  mouseLeave: function () {
     this.set('mouseInsideComponent', false);
   },
   /**
@@ -104,7 +104,7 @@ export default Ember.Component.extend({
    * @param text The text string we are measuring
    * @returns {*}
    */
-  getTextWidth: function(element, text) {
+  getTextWidth: function (element, text) {
     var fontFamily = element.css('font-family');
     var fontSize = element.css('font-size');
     var fontWeight = element.css('font-weight');
@@ -116,7 +116,7 @@ export default Ember.Component.extend({
     return size;
   },
   actions: {
-    cancelAction: function() {
+    cancelAction: function () {
       this.set('isEditing', false);
       if (this.get('isSelect')) {
         this.set('value', this.get('originalValue'));
@@ -127,7 +127,7 @@ export default Ember.Component.extend({
       this.set('errorMessage', false);
       this.sendAction('cancelAction');
     },
-    saveAction: function() {
+    saveAction: function () {
       //Do any validation here, before saving
       if (this.get('isText')) {
         if (this.get('validator')) {
@@ -162,9 +162,9 @@ export default Ember.Component.extend({
       }
     }
   },
-  didInsertElement: function() {
-    Ember.run.scheduleOnce('afterRender', this, function() {
-      var didInsertElementLogic = function() {
+  didInsertElement: function () {
+    Ember.run.scheduleOnce('afterRender', this, function () {
+      var didInsertElementLogic = function () {
         if (this.get('isText')) {
           if (!this.get('value') || this.get('value') === '') {
             this.set('value', 'Empty');
@@ -187,7 +187,7 @@ export default Ember.Component.extend({
           custom: {
             families: this.get('fontFamilyConfig')
           },
-          active: function() {
+          active: function () {
             didInsertElementLogic();
           }.bind(this)
         });

@@ -3,7 +3,7 @@
     {{!--Create a text input, if the type is text--}}
     {{#if isText}}
       <div class="textContainer">
-        {{input classBinding='classes' type='text' value=value}}
+        {{input class=classes type='text' value=value}}
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
@@ -14,12 +14,14 @@
     {{!--Create a select input, if the type is select--}}
     {{#if isSelect}}
       <div class="selectContainer">
-        {{view 'select'
+        {{#power-select
         classBinding='classes'
-        content=content
-        optionValuePath='content.value'
-        optionLabelPath='content.text'
-        value=value}}
+        onchange=(action 'changeAction')
+        options=content
+        selected=value
+        as |option|}}
+          <div>{{option}}</div>
+        {{/power-select}}
         {{!--If there is a validator error, show the message--}}
         {{#if errorMessage}}
           <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
