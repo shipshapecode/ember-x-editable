@@ -1,5 +1,6 @@
 # Ember-x-editable-addon
 
+[![npm version](https://badge.fury.io/js/ember-x-editable-addon.svg)](https://badge.fury.io/js/ember-x-editable-addon)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable-addon.svg)](http://emberobserver.com/addons/ember-x-editable-addon)
 [![Build Status](https://travis-ci.org/rwwagner90/ember-x-editable-addon.svg?branch=master)](https://travis-ci.org/rwwagner90/ember-x-editable-addon)
 
