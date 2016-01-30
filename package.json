@@ -39,7 +39,8 @@
     "ember-getowner-polyfill": "1.0.0",
     "ember-resolver": "2.0.3",
     "ember-truth-helpers": "1.2.0",
-    "ember-try": "0.0.8"
+    "ember-try": "0.0.8",
+    "loader.js": "^3.5.0"
   },
   "keywords": [
     "ember-addon"
