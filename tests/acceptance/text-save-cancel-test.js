@@ -1,10 +1,11 @@
+import $ from 'jquery';
 import {test} from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
 moduleForAcceptance('Text Save/Cancel');
 
 test("changing text and clicking save/cancel correctly updates value", function (assert) {
-  assert.expect(4);
+  assert.expect(5);
 
   visit('/');
   andThen(function () {
@@ -12,15 +13,18 @@ test("changing text and clicking save/cancel correctly updates value", function 
     assert.equal(find('.ember-x-editable-text', 'html').val(), 'TestString', "text is initially TestString");
   });
   click('.ember-x-editable-text');
-  fillIn('.ember-x-editable-text', 'New test string');
-  click('.editable-buttons .editable-submit');
   andThen(function () {
+    assert.equal(find('.ember-x-editable-text', 'html').hasClass('is-editing'), true, "is-editing class after clicking");
+  });
+  fillIn('.ember-x-editable-text', 'New test string');
+  andThen(function () {
+    $('.editable-buttons .editable-submit').click();
     assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text is saved");
   });
   click('.ember-x-editable-text');
-  fillIn('.ember-x-editable-text', 'Canceled string');
-  click('.editable-buttons .editable-cancel');
+  fillIn('.ember-x-editable-text', 'Cancelled text');
   andThen(function () {
-    assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text is unchanged");
+    $('.editable-buttons .editable-cancel').click();
+    assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text cancelled");
   });
 });
