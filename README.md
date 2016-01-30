@@ -1,6 +1,7 @@
 # Ember-x-editable-addon
 
 [![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable-addon.svg)](http://emberobserver.com/addons/ember-x-editable-addon)
+[![Build Status](https://travis-ci.org/rwwagner90/ember-x-editable-addon.svg?branch=master)](https://travis-ci.org/rwwagner90/ember-x-editable-addon)
 
 Ember-x-editable-addon is inspired by x-editable. It does not have all the same features, and it possibly never will, but I needed an x-editable that played nicely with Ember, so I decided to write this. If you would like to add functionality, please feel free to submit a PR.
 
