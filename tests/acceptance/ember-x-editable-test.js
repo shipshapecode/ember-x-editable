@@ -3,7 +3,7 @@ import $ from 'jquery';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
-var App, container;
+let application;
 
 function patchClick(sel, container) {
   find(sel, container)[0].click();
@@ -11,11 +11,10 @@ function patchClick(sel, container) {
 
 module('X-editable functionality tests', {
   beforeEach: function () {
-    App = startApp();
-    container = App.__container__;
+    application = startApp();
   },
   afterEach: function () {
-    Ember.run(App, App.destroy);
+    Ember.run(application, 'destroy');
   }
 });
 
