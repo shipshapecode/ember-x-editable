@@ -1,13 +1,8 @@
 import Ember from "ember";
-import $ from 'jquery';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
 
 let application;
-
-function patchClick(sel, container) {
-  find(sel, container)[0].click();
-}
 
 module('X-editable functionality tests', {
   beforeEach: function () {
