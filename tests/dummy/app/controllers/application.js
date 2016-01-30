@@ -8,12 +8,14 @@ export default Ember.Controller.extend({
     {value: 3, text: 'ReallyReallyLongTestString'}
   ]),
   selectValidator: null,
+  selectValue: 2,
+  textValue: 'TestString',
   textValidator: Validators.RequiredString,
   actions: {
-    cancelAction: function() {
+    cancelAction: function () {
       console.log('cancel');
     },
-    saveAction: function() {
+    saveAction: function () {
       console.log('save');
     }
   }
