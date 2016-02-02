@@ -9,7 +9,7 @@ Ember-x-editable-addon is inspired by x-editable. It does not have all the same 
 Currently, Bootstrap is bundled with this addon. Eventually, I'd like to just add a dependency on the ember bootstrap addon, or allow it to work without bootstrap. This addon also only works with HTMLBars and Ember 1.11+.
 
 ## Demo
-[![Ember-x-editable-addon demo](http://i.imgur.com/e2m1BtK.png)](http://rwwagner90.github.io/ember-x-editable-addon/)
+[![Ember-x-editable-addon demo](http://i.imgur.com/6vVQp6s.png)](http://rwwagner90.github.io/ember-x-editable-addon/)
 http://rwwagner90.github.io/ember-x-editable-addon/
 
 ## Usage
