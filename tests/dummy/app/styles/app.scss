@@ -1,20 +1,52 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,700italic|Oleo+Script:400,700);
+@import url("//hello.myfonts.net/count/3045c9");
+
+@font-face {
+  font-family: 'ThirstySoftLight';
+  src: url('webfonts/3045C9_0_0.eot');
+  src: url('webfonts/3045C9_0_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_0_0.woff2') format('woff2'), url('webfonts/3045C9_0_0.woff') format('woff'), url('webfonts/3045C9_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ThirstySoftRegular';
+  src: url('webfonts/3045C9_1_0.eot');
+  src: url('webfonts/3045C9_1_0.eot?#iefix') format('embedded-opentype'), url('webfonts/3045C9_1_0.woff2') format('woff2'), url('webfonts/3045C9_1_0.woff') format('woff'), url('webfonts/3045C9_1_0.ttf') format('truetype');
+}
+
+$background1: #323040;
+$background2: #2E2859;
+$lightColor: #AAA3D9;
+$altLightColor: #6E698C;
+$whiteish: #C8C7D5;
 
 body {
+  color: $lightColor;
   margin: 0;
-  background-color: #2ec4b3;
-  background-image: -webkit-linear-gradient(-45deg, #2ec4b3, #80b4be);
-  background-image: -moz-linear-gradient(-45deg, #2ec4b3, #80b4be);
-  background-image: -o-linear-gradient(-45deg, #2ec4b3, #80b4be);
-  background-image: linear-gradient(-45deg, #2ec4b3, #80b4be);
-  background-attachment: fixed;
+  background-color: $background1;
   font-family: 'Lato', sans-serif;
 }
 
-h1{
+.textContainer .ember-x-editable-text, .selectContainer .ember-x-editable-select {
+  font-size: 12.5px;
+  &::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  &.is-editing {
+    background-color: $whiteish;
+    color: $background2;
+  }
+  &.is-not-editing {
+    color: $whiteish;
+  }
+}
+
+h1 {
   font-size: 6vw;
 }
+
 h1, h2, h3, h4, h5, h6 {
-  color: white;
-  font-family: 'Oleo Script', cursive;
+  color: $whiteish;
+  font-family: 'ThirstySoftLight', cursive;
 }
