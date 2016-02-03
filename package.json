@@ -1,6 +1,6 @@
 {
   "name": "ember-x-editable-addon",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An ember addon with x-editable like functionality.",
   "homepage": "http://rwwagner90.github.io/ember-x-editable-addon/",
   "directories": {
