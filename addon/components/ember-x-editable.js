@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     return !this.get('errorMessage') ? true : false;
   }),
   changeUnderlineSize: Ember.observer('isEditing', function () {
-    Ember.run.scheduleOnce('afterRender', this, function () {
+    Ember.run.later(() => {
       let size;
       if (this.get('isText') && !this.get('isEditing')) {
         if (this.get('value') && this.get('value').length > 0) {
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
           this.$('.borderBottom').width(size.width);
         }
       }
-      if (this.get('isSelect')) {
+      else if (this.get('isSelect')) {
         if (!this.get('isEditing')) {
           size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
           this.$('.selectContainer').css('width', 'auto');
@@ -51,7 +51,7 @@ export default Ember.Component.extend({
     this.set('isFieldEditing', this.get('isEditing'));
   }),
   classes: Ember.computed('isEditing', 'errorMessage', function () {
-    var classNames = '';
+    let classNames = '';
     if (this.get('isText')) {
       classNames += 'ember-x-editable-text input-sm';
     }
@@ -101,7 +101,7 @@ export default Ember.Component.extend({
    * @param text The text string we are measuring
    * @returns {*}
    */
-  getTextWidth: function (element, text) {
+  getTextWidth(element, text) {
     const fontFamily = element.css('font-family');
     const fontSize = element.css('font-size');
     const fontWeight = element.css('font-weight');
@@ -112,13 +112,13 @@ export default Ember.Component.extend({
     });
   },
   actions: {
-    cancelAction: function () {
+    cancelAction() {
       this.set('isEditing', false);
       this.set('value', this.get('originalValue'));
       this.set('errorMessage', false);
       this.sendAction('cancelAction');
     },
-    saveAction: function () {
+    saveAction() {
       const validator = this.get('validator');
       //Do any validation here, before saving
       if (this.get('isText')) {
@@ -152,19 +152,17 @@ export default Ember.Component.extend({
       this.sendAction('saveAction');
     }
   },
-  init() {
-    this._super(...arguments);
-    if (this.get('isText')) {
-      if (!this.get('value') || this.get('value') === '') {
-        this.set('value', 'Empty');
-      }
-    }
-    //Store the original value, so we can restore it on cancel click
-    this.set('originalValue', this.get('value'));
-  },
   didInsertElement() {
-    Ember.run.scheduleOnce('afterRender', this, function () {
+    Ember.run.later(() => {
       const afterRenderLogic = () => {
+        if (this.get('isText')) {
+          if (!this.get('value') || this.get('value') === '') {
+            this.set('value', 'Empty');
+          }
+        }
+        //Store the original value, so we can restore it on cancel click
+        this.set('originalValue', this.get('value'));
+
         if (this.get('value')) {
           this.changeUnderlineSize();
         }
