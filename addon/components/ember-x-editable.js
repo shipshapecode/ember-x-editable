@@ -30,7 +30,8 @@ export default Ember.Component.extend({
           this.$('select').width(size.width);
           this.$('select').height(size.height + 7);
           this.$('.borderBottom').css('width', size.width);
-        } else {
+        }
+        else {
           this.$('.selectContainer').css('width', '68%');
           this.$('.selectContainer').height('auto');
           this.$('select').css('width', '100%');
@@ -63,7 +64,8 @@ export default Ember.Component.extend({
         classNames += ' is-empty';
       }
       classNames += ' is-not-editing';
-    } else {
+    }
+    else {
       classNames += ' is-editing';
     }
     if (this.get('errorMessage')) {
@@ -121,27 +123,19 @@ export default Ember.Component.extend({
     saveAction() {
       const validator = this.get('validator');
       //Do any validation here, before saving
-      if (this.get('isText')) {
-        if (validator) {
-          this.set('errorMessage', this.get('validator')(this.get('value')));
+      if (validator) {
+        this.set('errorMessage', this.get('validator')(this.get('value')));
 
-          //If no errors, update the originalValue to be the newly saved value
-          if (!this.get('errorMessage')) {
-            this.set('originalValue', this.get('value'));
-          }
+        //If no errors, update the originalValue to be the newly saved value
+        if (!this.get('errorMessage')) {
+          this.set('originalValue', this.get('value'));
         }
-        else if (!this.get('value') || this.get('value') === '') {
-          this.set('value', 'Empty');
-        }
-        this.saveNewValue();
       }
-      else if (this.get('isSelect')) {
-        if (validator) {
-          this.set('errorMessage', this.get('validator')(this.get('value')));
-        }
+      else {
+        this.handleEmptyTextValue();
         this.set('originalValue', this.get('value'));
-        this.saveNewValue();
       }
+      this.saveNewValue();
     }
   },
   saveNewValue() {
@@ -152,14 +146,17 @@ export default Ember.Component.extend({
       this.sendAction('saveAction');
     }
   },
+  handleEmptyTextValue() {
+    if (this.get('isText')) {
+      if (!this.get('value') || this.get('value') === '') {
+        this.set('value', 'Empty');
+      }
+    }
+  },
   didInsertElement() {
     Ember.run.later(() => {
       const afterRenderLogic = () => {
-        if (this.get('isText')) {
-          if (!this.get('value') || this.get('value') === '') {
-            this.set('value', 'Empty');
-          }
-        }
+        this.handleEmptyTextValue();
         //Store the original value, so we can restore it on cancel click
         this.set('originalValue', this.get('value'));
 
@@ -177,7 +174,8 @@ export default Ember.Component.extend({
           },
           active: afterRenderLogic
         });
-      } else {
+      }
+      else {
         afterRenderLogic();
       }
     });
