@@ -5,16 +5,26 @@ export default Ember.Component.extend({
   classNames: ['editable-container', 'editable-inline'],
   tagName: 'span',
   errorMessage: false,
-  isValid: function () {
-    return !this.get('errorMessage') ? true : false;
-  }.property('errorMessage'),
+  isEditing: false,
   mouseInsideComponent: false,
   originalValue: null,
-  changeSelectedUnderlineSize: function () {
+  isValid: Ember.computed('errorMessage', function () {
+    return !this.get('errorMessage') ? true : false;
+  }),
+  changeUnderlineSize: Ember.observer('isEditing', function () {
     Ember.run.scheduleOnce('afterRender', this, function () {
+      let size;
+      if (this.get('isText') && !this.get('isEditing')) {
+        if (this.get('value') && this.get('value').length > 0) {
+          size = this.getTextWidth(this.$('input'), this.get('value'));
+          this.$('.textContainer').width('68%');
+          this.$('input').width(size.width + 10);
+          this.$('.borderBottom').width(size.width);
+        }
+      }
       if (this.get('isSelect')) {
         if (!this.get('isEditing')) {
-          var size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
+          size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
           this.$('.selectContainer').css('width', 'auto');
           this.$('.selectContainer').height(size.height + 8);
           this.$('select').width(size.width);
@@ -27,32 +37,20 @@ export default Ember.Component.extend({
         }
       }
     });
-  }.observes('isEditing'),
-  changeTextUnderlineSize: function () {
-    Ember.run.scheduleOnce('afterRender', this, function () {
-      if (this.get('isText') && !this.get('isEditing')) {
-        if (this.get('value') && this.get('value').length > 0) {
-          var size = this.getTextWidth(this.$('input'), this.get('value'));
-          this.$('.textContainer').width('68%');
-          this.$('input').width(size.width + 10);
-          this.$('.borderBottom').width(size.width);
-        }
-      }
-    });
-  }.observes('isEditing'),
-  makeFullWidthWhenEditing: function () {
+  }),
+  makeFullWidthWhenEditing: Ember.observer('isEditing', function () {
     if (this.get('isText')) {
       this.$('input').width('100%');
     }
-  }.observes('isEditing'),
+  }),
   /**
    * Sets the isFieldEditing property to the current isEditing status.
    * This is used to pass isEditing out to the controller, if you need it
    */
-  setFieldIsEditing: function () {
+  setFieldIsEditing: Ember.observer('isEditing', function () {
     this.set('isFieldEditing', this.get('isEditing'));
-  }.observes('isEditing'),
-  classes: function () {
+  }),
+  classes: Ember.computed('isEditing', 'errorMessage', function () {
     var classNames = '';
     if (this.get('isText')) {
       classNames += 'ember-x-editable-text input-sm';
@@ -72,30 +70,29 @@ export default Ember.Component.extend({
       classNames += ' error';
     }
     return classNames;
-  }.property('isEditing', 'errorMessage'),
-  isEditing: false,
-  isSelect: function () {
+  }),
+  isSelect: Ember.computed('type', function () {
     return this.get('type') === 'select';
-  }.property('type'),
-  isText: function () {
+  }),
+  isText: Ember.computed('type', function () {
     return this.get('type') === 'text';
-  }.property('type'),
-  focusIn: function () {
+  }),
+  focusIn() {
     if (this.get('value') === 'Empty') {
       this.set('value', '');
     }
     this.set('isValid', true);
     this.set('isEditing', true);
   },
-  focusOut: function () {
+  focusOut() {
     if (!this.get('mouseInsideComponent')) {
       this.send('cancelAction');
     }
   },
-  mouseEnter: function () {
+  mouseEnter() {
     this.set('mouseInsideComponent', true);
   },
-  mouseLeave: function () {
+  mouseLeave() {
     this.set('mouseInsideComponent', false);
   },
   /**
@@ -105,32 +102,27 @@ export default Ember.Component.extend({
    * @returns {*}
    */
   getTextWidth: function (element, text) {
-    var fontFamily = element.css('font-family');
-    var fontSize = element.css('font-size');
-    var fontWeight = element.css('font-weight');
-    var size = calculateSize(text, {
+    const fontFamily = element.css('font-family');
+    const fontSize = element.css('font-size');
+    const fontWeight = element.css('font-weight');
+    return calculateSize(text, {
       font: fontFamily,
       fontSize: fontSize,
       fontWeight: fontWeight
     });
-    return size;
   },
   actions: {
     cancelAction: function () {
       this.set('isEditing', false);
-      if (this.get('isSelect')) {
-        this.set('value', this.get('originalValue'));
-      }
-      if (this.get('isText')) {
-        this.set('value', this.get('originalValue'));
-      }
+      this.set('value', this.get('originalValue'));
       this.set('errorMessage', false);
       this.sendAction('cancelAction');
     },
     saveAction: function () {
+      const validator = this.get('validator');
       //Do any validation here, before saving
       if (this.get('isText')) {
-        if (this.get('validator')) {
+        if (validator) {
           this.set('errorMessage', this.get('validator')(this.get('value')));
 
           //If no errors, update the originalValue to be the newly saved value
@@ -141,44 +133,42 @@ export default Ember.Component.extend({
         else if (!this.get('value') || this.get('value') === '') {
           this.set('value', 'Empty');
         }
-        //If no errors, go ahead and save
-        if (!this.get('errorMessage')) {
-          this.set('isEditing', false);
-          this.changeTextUnderlineSize();
-          this.sendAction('saveAction');
-        }
+        this.saveNewValue();
       }
       else if (this.get('isSelect')) {
-        if (this.get('validator')) {
+        if (validator) {
           this.set('errorMessage', this.get('validator')(this.get('value')));
         }
         this.set('originalValue', this.get('value'));
-        //If no errors, go ahead and save
-        if (!this.get('errorMessage')) {
-          this.set('isEditing', false);
-          this.changeSelectedUnderlineSize();
-          this.sendAction('saveAction');
-        }
+        this.saveNewValue();
       }
     }
   },
-  didInsertElement: function () {
+  saveNewValue() {
+    //If no errors, go ahead and save
+    if (!this.get('errorMessage')) {
+      this.set('isEditing', false);
+      this.changeUnderlineSize();
+      this.sendAction('saveAction');
+    }
+  },
+  init() {
+    this._super(...arguments);
+    if (this.get('isText')) {
+      if (!this.get('value') || this.get('value') === '') {
+        this.set('value', 'Empty');
+      }
+    }
+    //Store the original value, so we can restore it on cancel click
+    this.set('originalValue', this.get('value'));
+  },
+  didInsertElement() {
     Ember.run.scheduleOnce('afterRender', this, function () {
-      var didInsertElementLogic = function () {
-        if (this.get('isText')) {
-          if (!this.get('value') || this.get('value') === '') {
-            this.set('value', 'Empty');
-          }
-          this.changeTextUnderlineSize();
-          //Store the original value, so we can restore it on cancel click
-          this.set('originalValue', this.get('value'));
+      const afterRenderLogic = () => {
+        if (this.get('value')) {
+          this.changeUnderlineSize();
         }
-        if (this.get('isSelect') && this.get('value')) {
-          //Store the original value, so we can restore it on cancel click
-          this.set('originalValue', this.get('value'));
-          this.changeSelectedUnderlineSize();
-        }
-      }.bind(this);
+      };
 
       // If custom font families are being loaded with @font-face,
       // we need to wait until the font is loaded to display the inputs
@@ -187,14 +177,11 @@ export default Ember.Component.extend({
           custom: {
             families: this.get('fontFamilyConfig')
           },
-          active: function () {
-            didInsertElementLogic();
-          }.bind(this)
+          active: afterRenderLogic
         });
       } else {
-        didInsertElementLogic();
+        afterRenderLogic();
       }
-
     });
   }
 });

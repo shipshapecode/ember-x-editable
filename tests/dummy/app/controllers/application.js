@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Validators from '../utils/validators';
 
 export default Ember.Controller.extend({
+  fontFamilyConfig: ['Lato'],
   selectContent: Ember.A([
     {value: 1, text: 'TestString'},
     {value: 2, text: 'LongerTestString'},
