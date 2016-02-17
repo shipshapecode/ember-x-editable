@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "ember-x-editable-addon",
+  "name": "ember-x-editable",
   "main": [
     "dist/assets/ember-x-editable.css",
     "dist/assets/ember-x-editable.js"
