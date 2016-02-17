@@ -1,0 +1,18 @@
+<div class="selectContainer">
+  <select class="ember-x-editable-select input-sm
+    {{if isEditing 'is-editing' 'is-not-editing'}}
+    {{if errorMessage 'error'}}"
+          onchange={{action (mut value) value="target.value"}}>
+    {{#each content as |option|}}
+      <option value={{option.value}} selected={{eq value option.value}}>{{option.text}}</option>
+    {{/each}}
+  </select>
+
+  {{error-message errorMessage=errorMessage isEditing=isEditing tagName=''}}
+</div>
+
+{{editable-buttons
+cancelAction=(action 'cancelAction')
+isEditing=isEditing
+saveAction=(action 'saveAction')
+tagName=''}}

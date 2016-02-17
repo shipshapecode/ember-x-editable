@@ -1,0 +1,5 @@
+{{!--If there is a validator error, show the message--}}
+{{#if errorMessage}}
+  <span class="help-block form-error has-input-group-error">{{errorMessage}}</span>
+{{/if}}
+<div class="borderBottom {{if isEditing 'shouldNotDisplay'}}"></div>
