@@ -1,17 +1,17 @@
-# Ember-x-editable-addon
+# Ember-x-editable
 
-[![npm version](https://badge.fury.io/js/ember-x-editable-addon.svg)](https://badge.fury.io/js/ember-x-editable-addon)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable-addon.svg)](http://emberobserver.com/addons/ember-x-editable-addon)
-[![Build Status](https://travis-ci.org/shipshapecode/ember-x-editable-addon.svg?branch=master)](https://travis-ci.org/shipshapecode/ember-x-editable-addon)
-[![Code Climate](https://codeclimate.com/github/shipshapecode/ember-x-editable-addon/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-x-editable-addon)
+[![npm version](https://badge.fury.io/js/ember-x-editable.svg)](https://badge.fury.io/js/ember-x-editable)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable.svg)](http://emberobserver.com/addons/ember-x-editable)
+[![Build Status](https://travis-ci.org/shipshapecode/ember-x-editable.svg?branch=master)](https://travis-ci.org/shipshapecode/ember-x-editable)
+[![Code Climate](https://codeclimate.com/github/shipshapecode/ember-x-editable/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-x-editable)
 
-Ember-x-editable-addon is inspired by x-editable. It does not have all the same features, and it possibly never will, but I needed an x-editable that played nicely with Ember, so I decided to write this. If you would like to add functionality, please feel free to submit a PR.
+Ember-x-editable is inspired by x-editable. It does not have all the same features, and it possibly never will, but I needed an x-editable that played nicely with Ember, so I decided to write this. If you would like to add functionality, please feel free to submit a PR.
 
 Currently, Bootstrap is bundled with this addon. Eventually, I'd like to just add a dependency on the ember bootstrap addon, or allow it to work without bootstrap. This addon also only works with HTMLBars and Ember 1.11+.
 
 ## Demo
-[![Ember-x-editable-addon demo](http://i.imgur.com/6vVQp6s.png)](http://shipshapecode.github.io/ember-x-editable-addon/)
-http://shipshapecode.github.io/ember-x-editable-addon/
+[![Ember-x-editable demo](http://i.imgur.com/6vVQp6s.png)](http://shipshapecode.github.io/ember-x-editable/)
+http://shipshapecode.github.io/ember-x-editable/
 
 ## Usage
 ### Text Inputs
