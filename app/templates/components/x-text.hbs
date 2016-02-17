@@ -1,11 +1,15 @@
 <div class="textContainer">
   {{input
-  classNameBindings=":ember-x-editable-text :input-sm isEditing:is-editing:is-not-editing"
+  classNameBindings=":ember-x-editable-text :input-sm isEditing:is-editing:is-not-editing errorMessage:error"
   type="text"
   value=value}}
 
-  {{partial 'error'}}
+  {{error-message errorMessage=errorMessage isEditing=isEditing tagName=''}}
 </div>
 
-{{partial 'buttons'}}
+{{editable-buttons
+cancelAction=(action 'cancelAction')
+isEditing=isEditing
+saveAction=(action 'saveAction')
+tagName=''}}
 

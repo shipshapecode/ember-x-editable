@@ -1,0 +1,11 @@
+{{!--If editing, show save and cancel buttons--}}
+{{#if isEditing}}
+  <div class="editable-buttons">
+    <button class="btn btn-primary btn-sm editable-submit" {{action attrs.saveAction}}><i class="glyphicon
+      glyphicon-ok"></i>
+    </button>
+    <button class="btn btn-default btn-sm editable-cancel" {{action attrs.cancelAction}}><i class="glyphicon
+      glyphicon-remove"></i>
+    </button>
+  </div>
+{{/if}}

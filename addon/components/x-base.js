@@ -2,10 +2,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNameBindings: [
-    'errorMessage:error',
-    'isEditing:is-editing:is-not-editing'
-  ],
   tagName: 'span',
   errorMessage: false,
   isEditing: false,
