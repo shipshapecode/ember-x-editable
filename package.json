@@ -2,7 +2,7 @@
   "name": "ember-x-editable-addon",
   "version": "0.2.0",
   "description": "An ember addon with x-editable like functionality.",
-  "homepage": "http://rwwagner90.github.io/ember-x-editable-addon/",
+  "homepage": "http://shipshapecode.github.io/ember-x-editable-addon/",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -12,7 +12,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/rwwagner90/ember-x-editable-addon",
+  "repository": "https://github.com/shipshapecode/ember-x-editable-addon",
   "engines": {
     "node": "0.12"
   },
@@ -58,6 +58,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://rwwagner90.github.io/ember-x-editable-addon/"
+    "demoURL": "http://shipshapecode.github.io/ember-x-editable-addon/"
   }
 }
