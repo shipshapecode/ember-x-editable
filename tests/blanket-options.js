@@ -1,8 +1,8 @@
 /* globals blanket, module */
 
 var options = {
-  modulePrefix: 'ember-x-editable-addon',
-  filter: '//.*ember-x-editable-addon/.*/',
+  modulePrefix: 'ember-x-editable',
+  filter: '//.*ember-x-editable/.*/',
   antifilter: '//.*(tests|template).*/',
   loaderExclusions: [],
   enableCoverage: true,
@@ -12,7 +12,7 @@ var options = {
     lcovOptions: {
       outputFile: 'lcov.dat',
       renamer: function (moduleName) {
-        var expression = /^ember-x-editable-addon/;
+        var expression = /^ember-x-editable/;
         return moduleName.replace(expression, 'addon') + '.js';
       }
     }

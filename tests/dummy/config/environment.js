@@ -45,7 +45,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ember-x-editable-addon';
+    ENV.baseURL = '/ember-x-editable';
   }
 
   return ENV;

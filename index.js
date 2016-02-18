@@ -6,7 +6,7 @@
 var path = require('path');
 
 module.exports = {
-  name: 'ember-x-editable-addon',
+  name: 'ember-x-editable',
 
   blueprintsPath: function() {
     return path.join(__dirname, 'blueprints');
