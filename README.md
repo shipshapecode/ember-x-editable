@@ -3,6 +3,7 @@
 [![Join the chat at https://gitter.im/shipshapecode/ember-x-editable](https://badges.gitter.im/shipshapecode/ember-x-editable.svg)](https://gitter.im/shipshapecode/ember-x-editable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![npm version](https://badge.fury.io/js/ember-x-editable.svg)](https://badge.fury.io/js/ember-x-editable)
+[![npm](https://img.shields.io/npm/dm/ember-x-editable.svg)]()
 [![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable.svg)](http://emberobserver.com/addons/ember-x-editable)
 [![Build Status](https://travis-ci.org/shipshapecode/ember-x-editable.svg?branch=master)](https://travis-ci.org/shipshapecode/ember-x-editable)
 [![Code Climate](https://codeclimate.com/github/shipshapecode/ember-x-editable/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-x-editable)
