@@ -1,11 +1,12 @@
 import Ember from 'ember';
+const {Component, computed} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNameBindings: ['editable-container', 'editable-inline'],
-  isSelect: Ember.computed('type', function () {
+  isSelect: computed('type', function () {
     return this.get('type') === 'select';
   }),
-  isText: Ember.computed('type', function () {
+  isText: computed('type', function () {
     return this.get('type') === 'text';
   })
 });

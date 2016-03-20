@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import XBaseComponent from './x-base';
+const {observer, run} = Ember;
 
 export default XBaseComponent.extend({
-  changeUnderlineSize: Ember.observer('isEditing', function() {
-    Ember.run.later(() => {
+  changeUnderlineSize: observer('isEditing', function() {
+    run.later(() => {
       if (!this.get('isEditing')) {
         const size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
         this.$('.selectContainer').css('width', 'auto');

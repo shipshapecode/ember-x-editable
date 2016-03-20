@@ -1,20 +1,21 @@
 /* globals calculateSize, WebFont */
 import Ember from 'ember';
+const {Component, computed, observer, run} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'span',
   errorMessage: false,
   isEditing: false,
   mouseInsideComponent: false,
   originalValue: null,
-  isValid: Ember.computed('errorMessage', function() {
+  isValid: computed('errorMessage', function() {
     return !this.get('errorMessage') ? true : false;
   }),
   /**
    * Sets the isFieldEditing property to the current isEditing status.
    * This is used to pass isEditing out to the controller, if you need it
    */
-  setFieldIsEditing: Ember.observer('isEditing', function() {
+  setFieldIsEditing: observer('isEditing', function() {
     this.set('isFieldEditing', this.get('isEditing'));
   }),
   focusIn() {
@@ -84,7 +85,7 @@ export default Ember.Component.extend({
     }
   },
   didInsertElement() {
-    Ember.run.later(() => {
+    run.later(() => {
       const afterRenderLogic = () => {
         //TODO fix this empty text handling
         //this.handleEmptyTextValue();

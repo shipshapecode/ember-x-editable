@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import XBaseComponent from './x-base';
+const {computed, observer, run} = Ember;
 
 export default XBaseComponent.extend({
-  changeUnderlineSize: Ember.observer('isEditing', function() {
-    Ember.run.later(() => {
+  changeUnderlineSize: observer('isEditing', function() {
+    run.later(() => {
       if (!this.get('isEditing')) {
         if (this.get('value') && this.get('value').length > 0) {
           const size = this.getTextWidth(this.$('input'), this.get('value'));
@@ -17,7 +18,7 @@ export default XBaseComponent.extend({
   /**
    * This is a computed property for adding/removing the is-empty class
    */
-  isEmpty: Ember.computed('isEditing', function() {
+  isEmpty: computed('isEditing', function() {
     if (!this.get('isEditing')) {
       if (!this.get('value') || this.get('value') === '' || this.get('value') === 'Empty') {
         return true;
@@ -25,7 +26,7 @@ export default XBaseComponent.extend({
     }
     return false;
   }),
-  makeFullWidthWhenEditing: Ember.observer('isEditing', function() {
+  makeFullWidthWhenEditing: observer('isEditing', function() {
     this.$('input').width('100%');
   }),
   /**
