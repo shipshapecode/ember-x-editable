@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import {test} from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
@@ -17,14 +16,14 @@ test("changing text and clicking save/cancel correctly updates value", function 
     assert.equal(find('.ember-x-editable-text', 'html').hasClass('is-editing'), true, "is-editing class after clicking");
   });
   fillIn('.ember-x-editable-text', 'New test string');
+  click('.editable-buttons .editable-submit');
   andThen(function () {
-    $('.editable-buttons .editable-submit').click();
     assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text is saved");
-    click('.ember-x-editable-text');
-    fillIn('.ember-x-editable-text', 'Cancelled text');
-    andThen(function () {
-      $('.editable-buttons .editable-cancel').click();
-      assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text cancelled");
-    });
+  });
+  click('.ember-x-editable-text');
+  fillIn('.ember-x-editable-text', 'Cancelled text');
+  click('.editable-buttons .editable-cancel');
+  andThen(function () {
+    assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text cancelled");
   });
 });
