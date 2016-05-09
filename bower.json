@@ -1,23 +1,10 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.1",
   "name": "ember-x-editable",
-  "main": [
-    "dist/assets/ember-x-editable.css",
-    "dist/assets/ember-x-editable.js"
-  ],
-  "ignore": [
-    "**/.*",
-    "ember-cli-build.js",
-    "config",
-    "package.json",
-    "public",
-    "tests",
-    "vendor"
-  ],
   "dependencies": {
     "bootstrap": "~3.3",
     "bower-webfontloader": "~1.5.13",
-    "ember": "~2.4.3",
+    "ember": "~2.6.0-beta.2",
     "ember-cli-shims": "0.1.1",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0"
