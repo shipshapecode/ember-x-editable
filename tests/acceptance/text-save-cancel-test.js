@@ -12,13 +12,20 @@ test('text is initially TestString', function (assert) {
   });
 });
 
-test('text is saved', function (assert) {
-  assert.expect(2);
+test('is-editing class applied', function (assert) {
+  assert.expect(1);
   visit('/');
   click('.ember-x-editable-text');
   andThen(function () {
     assert.equal(find('.ember-x-editable-text', 'html').hasClass('is-editing'), true, "is-editing class after clicking");
   });
+});
+
+
+test('text is saved', function (assert) {
+  assert.expect(1);
+  visit('/');
+  click('.ember-x-editable-text');
   fillIn('.ember-x-editable-text', 'New test string');
   click('.editable-buttons .editable-submit');
   andThen(function () {
