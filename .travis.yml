@@ -3,8 +3,7 @@ language: node_js
 node_js:
 - "4"
 
-sudo: true
-dist: trusty
+sudo: false
 
 cache:
   directories:
@@ -35,7 +34,9 @@ install:
   - bower install
 
 script:
-  - ember try $EMBER_TRY_SCENARIO test
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - ember try $EMBER_TRY_SCENARIO test --skip-cleanup
 
 after_script:
   - codeclimate-test-reporter < lcov.dat
