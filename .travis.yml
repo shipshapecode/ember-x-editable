@@ -35,9 +35,7 @@ install:
   - bower install
 
 script:
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - ember try $EMBER_TRY_SCENARIO test --skip-cleanup
+  - ember try $EMBER_TRY_SCENARIO test
 
 after_script:
   - codeclimate-test-reporter < lcov.dat
