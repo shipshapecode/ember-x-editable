@@ -1,5 +1,7 @@
 # Ember-x-editable
 
+<a href="http://shipshape.io/"><img src="http://i.imgur.com/EVjM7AV.png" width="100" height="100"/></a>
+
 [![Join the chat at https://gitter.im/shipshapecode/ember-x-editable](https://badges.gitter.im/shipshapecode/ember-x-editable.svg)](https://gitter.im/shipshapecode/ember-x-editable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![npm version](https://badge.fury.io/js/ember-x-editable.svg)](https://badge.fury.io/js/ember-x-editable)
