@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import {test} from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
@@ -25,21 +26,34 @@ test('is-editing class applied', function (assert) {
 test('text is saved', function (assert) {
   assert.expect(1);
   visit('/');
-  click('.ember-x-editable-text');
-  fillIn('.ember-x-editable-text', 'New test string');
-  click('.editable-buttons .editable-submit');
   andThen(function () {
-    assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text is saved");
+    click('.ember-x-editable-text');
+    andThen(function () {
+      fillIn('.ember-x-editable-text', 'New test string');
+    });
+    andThen(function () {
+      $('.editable-buttons .editable-submit').click();
+    });
+    andThen(function () {
+      assert.equal(find('.ember-x-editable-text', 'html').val(), 'New test string', "text is saved");
+    });
   });
 });
 
 test("text is cancelled", function (assert) {
   assert.expect(1);
   visit('/');
-  click('.ember-x-editable-text');
-  fillIn('.ember-x-editable-text', 'Cancelled text');
-  click('.editable-buttons .editable-cancel');
   andThen(function () {
-    assert.equal(find('.ember-x-editable-text', 'html').val(), 'TestString', "text cancelled");
+
+    click('.ember-x-editable-text');
+    andThen(function () {
+      fillIn('.ember-x-editable-text', 'Cancelled text');
+    });
+    andThen(function () {
+      $('.editable-buttons .editable-cancel').click();
+    });
+    andThen(function () {
+      assert.equal(find('.ember-x-editable-text', 'html').val(), 'TestString', "text cancelled");
+    });
   });
 });
