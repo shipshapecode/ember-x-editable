@@ -1,7 +1,8 @@
 import Ember from 'ember';
+const {Controller, Logger} = Ember;
 import Validators from '../utils/validators';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   fontFamilyConfig: ['Lato'],
   selectContent: Ember.A([
     {value: "1", text: 'TestString'},
@@ -14,10 +15,10 @@ export default Ember.Controller.extend({
   textValidator: Validators.RequiredString,
   actions: {
     cancelAction: function () {
-      console.log('cancel');
+      Logger.log('cancel');
     },
     saveAction: function () {
-      console.log('save');
+      Logger.log('save');
     }
   }
 });

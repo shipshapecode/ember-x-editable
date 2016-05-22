@@ -2,7 +2,7 @@ import $ from 'jquery';
 import {test} from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
-moduleForAcceptance('Text Save/Cancel');
+moduleForAcceptance('ember-x-editable');
 
 test('text is initially TestString', function (assert) {
   assert.expect(2);
@@ -40,11 +40,10 @@ test('text is saved', function (assert) {
   });
 });
 
-test("text is cancelled", function (assert) {
+test("text is cancelled, cancel button", function (assert) {
   assert.expect(1);
   visit('/');
   andThen(function () {
-
     click('.ember-x-editable-text');
     andThen(function () {
       fillIn('.ember-x-editable-text', 'Cancelled text');
@@ -57,3 +56,22 @@ test("text is cancelled", function (assert) {
     });
   });
 });
+
+test("text is cancelled, focusOut", function (assert) {
+  assert.expect(1);
+  visit('/');
+  andThen(function () {
+    click('.ember-x-editable-text');
+    andThen(function () {
+      fillIn('.ember-x-editable-text', 'Cancelled text');
+    });
+    andThen(function () {
+      $('.ember-x-editable-text').focusout()
+    });
+    andThen(function () {
+      assert.equal(find('.ember-x-editable-text', 'html').val(), 'TestString', "text cancelled");
+    });
+  });
+});
+
+
