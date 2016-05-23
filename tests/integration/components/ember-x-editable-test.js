@@ -13,3 +13,10 @@ test('mouseEnter/mouseLeave', function (assert) {
   this.$('div').first().mouseleave();
   assert.equal(this.get('mouseInsideComponent'), false);
 });
+
+test('Empty value', function (assert) {
+  this.set('value', 'Empty');
+  this.render(hbs`{{x-text validator=validator value=value}}`);
+  this.$('div').first().focusin();
+  assert.equal(this.get('value'), '');
+});
