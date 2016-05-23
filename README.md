@@ -9,6 +9,7 @@
 [![Ember Observer Score](http://emberobserver.com/badges/ember-x-editable.svg)](http://emberobserver.com/addons/ember-x-editable)
 [![Build Status](https://travis-ci.org/shipshapecode/ember-x-editable.svg?branch=master)](https://travis-ci.org/shipshapecode/ember-x-editable)
 [![Code Climate](https://codeclimate.com/github/shipshapecode/ember-x-editable/badges/gpa.svg)](https://codeclimate.com/github/shipshapecode/ember-x-editable)
+[![Test Coverage](https://codeclimate.com/github/shipshapecode/ember-x-editable/badges/coverage.svg)](https://codeclimate.com/github/shipshapecode/ember-x-editable/coverage)
 
 Ember-x-editable is inspired by x-editable. It does not have all the same features, and it possibly never will, but I needed an x-editable that played nicely with Ember, so I decided to write this. If you would like to add functionality, please feel free to submit a PR.
 
