@@ -66,10 +66,44 @@ test("text is cancelled, focusOut", function (assert) {
       fillIn('.ember-x-editable-text', 'Cancelled text');
     });
     andThen(function () {
-      $('.ember-x-editable-text').focusout()
+      $('.ember-x-editable-text').focusout();
     });
     andThen(function () {
       assert.equal(find('.ember-x-editable-text', 'html').val(), 'TestString', "text cancelled");
+    });
+  });
+});
+
+test("x-select save change", function (assert) {
+  assert.expect(1);
+  visit('/');
+  andThen(function () {
+    click('.ember-x-editable-select');
+    andThen(function () {
+      $('.ember-x-editable-select option:nth-child(3)').prop('selected', true).trigger('change');
+    });
+    andThen(function () {
+      $('.editable-buttons .editable-save').click();
+    });
+    andThen(function () {
+      assert.equal(find('.ember-x-editable-select option:selected', 'html').text(), 'ReallyReallyLongTestString', "selection saved");
+    });
+  });
+});
+
+test("x-select cancel change", function (assert) {
+  assert.expect(1);
+  visit('/');
+  andThen(function () {
+    click('.ember-x-editable-select');
+    andThen(function () {
+      $('.ember-x-editable-select option:nth-child(1)').prop('selected', true).trigger('change');
+    });
+    andThen(function () {
+      $('.editable-buttons .editable-cancel').click();
+    });
+    andThen(function () {
+      assert.equal(find('.ember-x-editable-select option:selected', 'html').text(), 'LongerTestString', "selection cancelled");
     });
   });
 });
