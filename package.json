@@ -51,7 +51,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
-    "ember-cli-sass": "5.4.0"
+    "ember-cli-sass": "5.5.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
