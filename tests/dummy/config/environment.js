@@ -40,7 +40,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
-    ENV.baseURL = '/ember-x-editable/';
+    ENV.rootURL = '/ember-x-editable/';
 
   }
 
