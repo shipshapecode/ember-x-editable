@@ -1,6 +1,6 @@
 {
   "name": "ember-x-editable",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "An ember addon with x-editable like functionality.",
   "homepage": "http://shipshapecode.github.io/ember-x-editable/",
   "directories": {
