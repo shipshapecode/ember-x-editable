@@ -50,7 +50,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.6",
+    "ember-cli-babel": "^5.1.10",
     "ember-cli-sass": "5.5.1"
   },
   "ember-addon": {
