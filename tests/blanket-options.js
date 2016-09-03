@@ -1,4 +1,4 @@
-/* globals blanket, module */
+/* eslint-disable */
 
 var options = {
   modulePrefix: 'ember-x-editable',

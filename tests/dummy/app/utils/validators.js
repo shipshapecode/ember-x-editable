@@ -1,6 +1,6 @@
-var Validators = {
-  RequiredString: function(value) {
-    var text = new RegExp(/^[a-zA-Z][a-zA-Z '-]*$/i);
+const Validators = {
+  RequiredString(value) {
+    let text = new RegExp(/^[a-zA-Z][a-zA-Z '-]*$/i);
     if (!text.test(value)) {
       return 'Text may only contain \'A-Z\',\'a-z\', spaces, hyphens and apostrophes.';
     }

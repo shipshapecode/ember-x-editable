@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import XBaseComponent from './x-base';
-const {computed, observer, run} = Ember;
+const { computed, observer, run } = Ember;
 
 export default XBaseComponent.extend({
   changeUnderlineSize: observer('isEditing', function() {
     run.later(() => {
       if (!this.get('isEditing')) {
         if (this.get('value') && this.get('value').length > 0) {
-          const size = this.getTextWidth(this.$('input'), this.get('value'));
+          let size = this.getTextWidth(this.$('input'), this.get('value'));
           this.$('.textContainer').width('68%');
           this.$('input').width(size.width + 10);
           this.$('.borderBottom').width(size.width);
@@ -17,6 +17,7 @@ export default XBaseComponent.extend({
   }),
   /**
    * This is a computed property for adding/removing the is-empty class
+   * @private
    */
   isEmpty: computed('isEditing', function() {
     if (!this.get('isEditing')) {
@@ -31,6 +32,7 @@ export default XBaseComponent.extend({
   }),
   /**
    * Set the value to the string 'Empty' when value is null, undefined, or ''.
+   * @private
    */
   handleEmptyValue() {
     if (!this.get('value') || this.get('value') === '') {
@@ -38,11 +40,11 @@ export default XBaseComponent.extend({
     }
   },
   actions: {
-    saveAction(){
+    saveAction() {
       if (!this.get('validator')) {
         this.handleEmptyValue();
       }
-      this._super.apply(this, arguments);
+      this._super(...arguments);
     }
   }
 });

@@ -1,6 +1,6 @@
 /* globals calculateSize, WebFont */
 import Ember from 'ember';
-const {Component, computed, observer, run} = Ember;
+const { Component, computed, observer, run } = Ember;
 
 export default Component.extend({
   tagName: 'span',
@@ -14,6 +14,7 @@ export default Component.extend({
   /**
    * Sets the isFieldEditing property to the current isEditing status.
    * This is used to pass isEditing out to the controller, if you need it
+   * @private
    */
   setFieldIsEditing: observer('isEditing', function() {
     this.set('isFieldEditing', this.get('isEditing'));
@@ -41,19 +42,20 @@ export default Component.extend({
    * @param element The element the text is inside, this is used to get font size, weight, etc
    * @param text The text string we are measuring
    * @returns {*}
+   * @private
    */
   getTextWidth(element, text) {
-    const fontFamily = element.css('font-family');
-    const fontSize = element.css('font-size');
-    const fontWeight = element.css('font-weight');
+    let fontFamily = element.css('font-family');
+    let fontSize = element.css('font-size');
+    let fontWeight = element.css('font-weight');
     return calculateSize(text, {
       font: fontFamily,
-      fontSize: fontSize,
-      fontWeight: fontWeight
+      fontSize,
+      fontWeight
     });
   },
   saveNewValue() {
-    //If no errors, go ahead and save
+    // If no errors, go ahead and save
     if (!this.get('errorMessage')) {
       this.set('isEditing', false);
       this.changeUnderlineSize();
@@ -68,17 +70,16 @@ export default Component.extend({
       this.sendAction('cancelAction');
     },
     saveAction() {
-      const validator = this.get('validator');
-      //Do any validation here, before saving
+      let validator = this.get('validator');
+      // Do any validation here, before saving
       if (validator) {
         this.set('errorMessage', this.get('validator')(this.get('value')));
 
-        //If no errors, update the originalValue to be the newly saved value
+        // If no errors, update the originalValue to be the newly saved value
         if (!this.get('errorMessage')) {
           this.set('originalValue', this.get('value'));
         }
-      }
-      else {
+      } else {
         this.set('originalValue', this.get('value'));
       }
       this.saveNewValue();
@@ -86,10 +87,10 @@ export default Component.extend({
   },
   didInsertElement() {
     run.later(() => {
-      const afterRenderLogic = () => {
-        //TODO fix this empty text handling
-        //this.handleEmptyTextValue();
-        //Store the original value, so we can restore it on cancel click
+      let afterRenderLogic = () => {
+        // TODO fix this empty text handling
+        // this.handleEmptyTextValue();
+        // Store the original value, so we can restore it on cancel click
         this.set('originalValue', this.get('value'));
 
         if (this.get('value')) {
@@ -106,8 +107,7 @@ export default Component.extend({
           },
           active: afterRenderLogic
         });
-      }
-      else {
+      } else {
         afterRenderLogic();
       }
     });

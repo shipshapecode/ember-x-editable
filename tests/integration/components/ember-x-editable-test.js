@@ -1,11 +1,11 @@
-import {moduleForComponent, test} from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('ember-x-editable', 'Integration | Component | ember x editable', {
   integration: true
 });
 
-test('mouseEnter/mouseLeave', function (assert) {
+test('mouseEnter/mouseLeave', function(assert) {
   this.set('mouseInsideComponent', false);
   this.render(hbs`{{x-text mouseInsideComponent=mouseInsideComponent validator=validator value=value}}`);
   this.$('div').first().mouseenter();
@@ -14,7 +14,7 @@ test('mouseEnter/mouseLeave', function (assert) {
   assert.equal(this.get('mouseInsideComponent'), false);
 });
 
-test('Empty value', function (assert) {
+test('Empty value', function(assert) {
   this.set('value', 'Empty');
   this.render(hbs`{{x-text validator=validator value=value}}`);
   this.$('div').first().focusin();
