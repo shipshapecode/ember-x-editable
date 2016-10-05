@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.0.0",
     "broccoli-asset-rev": "^2.4.5",
     "codeclimate-test-reporter": "^0.4.0",
     "ember-assign-polyfill": "0.0.0",
