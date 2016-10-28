@@ -12,7 +12,7 @@ module.exports = {
     return path.join(__dirname, 'blueprints');
   },
   included: function(app) {
-    this._super.included(app);
+    this._super.included.apply(this, arguments);
 
     this.app.import(app.bowerDirectory + '/bower-webfontloader/webfont.js');
 
