@@ -14,7 +14,7 @@
   },
   "repository": "https://github.com/shipshapecode/ember-x-editable",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4"
   },
   "author": {
     "name": "Robert Wagner",
