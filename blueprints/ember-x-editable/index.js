@@ -8,8 +8,7 @@ module.exports = {
   },
 
   afterInstall: function() {
-    return this.addBowerPackagesToProject({
-      packages: [
+    return this.addBowerPackagesToProject([
         {
           name: 'bootstrap',
           target: '~3.3'
@@ -18,7 +17,6 @@ module.exports = {
           name: 'bower-webfontloader',
           target: '~1.5.13'
         }
-      ]
-    });
+      ]);
   }
 };
