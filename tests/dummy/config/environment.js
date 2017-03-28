@@ -1,7 +1,7 @@
-/* eslint-disable */
+/* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  const ENV = {
     modulePrefix: 'dummy',
     environment: environment,
     rootURL: '/',
