@@ -1,7 +1,6 @@
 {
   "name": "ember-x-editable",
   "dependencies": {
-    "bootstrap": "~3.3",
-    "bower-webfontloader": "~1.5.13"
+    "bootstrap": "~3.3"
   }
 }
