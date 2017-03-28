@@ -1,6 +1,8 @@
 /* globals calculateSize, WebFont */
-import Ember from 'ember';
-const { Component, computed, observer, run } = Ember;
+import Component from 'ember-component';
+import computed from 'ember-computed';
+import observer from 'ember-metal/observer';
+import run from 'ember-runloop';
 
 export default Component.extend({
   tagName: 'span',

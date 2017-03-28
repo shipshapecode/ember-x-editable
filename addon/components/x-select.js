@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import observer from 'ember-metal/observer';
+import run from 'ember-runloop';
 import XBaseComponent from './x-base';
-const { observer, run } = Ember;
 
 export default XBaseComponent.extend({
   changeUnderlineSize: observer('isEditing', function() {
