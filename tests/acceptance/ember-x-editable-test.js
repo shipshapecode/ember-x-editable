@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { test } from 'qunit';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
-moduleForAcceptance('ember-x-editable');
+moduleForAcceptance('Acceptance | ember-x-editable');
 
 test('text is initially TestString', function(assert) {
   assert.expect(2);
