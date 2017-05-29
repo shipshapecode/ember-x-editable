@@ -27,7 +27,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.0.0-beta.9",
     "ember-cli-node-assets": "0.2.2",
-    "ember-cli-sass": "^6.1.2",
+    "ember-cli-sass": "6.1.3",
     "webfontloader": "^1.6.27"
   },
   "devDependencies": {
