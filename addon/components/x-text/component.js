@@ -1,9 +1,11 @@
 import computed from 'ember-computed';
 import observer from 'ember-metal/observer';
 import run from 'ember-runloop';
-import XBaseComponent from './x-base';
+import XBaseComponent from '../x-base/component';
+import layout from './template';
 
 export default XBaseComponent.extend({
+  layout,
   changeUnderlineSize: observer('isEditing', function() {
     run.later(() => {
       if (!this.get('isEditing')) {
