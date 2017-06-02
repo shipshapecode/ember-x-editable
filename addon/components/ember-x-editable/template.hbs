@@ -1,12 +1,7 @@
 <div class="control-group">
   <div class="form-inline editableform">
-    {{!--Create a text input, if the type is text--}}
-    {{#if isText}}
-      {{x-text validator=validator value=value}}
-    {{/if}}
-    {{!--Create a select input, if the type is select--}}
-    {{#if isSelect}}
-      {{x-select content=content validator=validator value=value}}
-    {{/if}}
+    {{yield (hash
+              select=(component 'x-editable-select' content=content validator=validator value=value)
+              text=(component 'x-editable-text' validator=validator value=value))}}
   </div>
 </div>

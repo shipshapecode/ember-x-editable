@@ -7,7 +7,7 @@ moduleForComponent('ember-x-editable', 'Integration | Component | ember x editab
 
 test('mouseEnter/mouseLeave', function(assert) {
   this.set('mouseInsideComponent', false);
-  this.render(hbs`{{x-text mouseInsideComponent=mouseInsideComponent validator=validator value=value}}`);
+  this.render(hbs`{{x-editable-text mouseInsideComponent=mouseInsideComponent validator=validator value=value}}`);
   this.$('div').first().mouseenter();
   assert.equal(this.get('mouseInsideComponent'), true);
   this.$('div').first().mouseleave();
@@ -16,7 +16,7 @@ test('mouseEnter/mouseLeave', function(assert) {
 
 test('Empty value', function(assert) {
   this.set('value', 'Empty');
-  this.render(hbs`{{x-text validator=validator value=value}}`);
+  this.render(hbs`{{x-editable-text validator=validator value=value}}`);
   this.$('div').first().focusin();
   assert.equal(this.get('value'), '');
 });

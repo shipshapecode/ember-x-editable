@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('component:x-text', 'Unit | x text', {
+moduleFor('component:x-editable-text', 'Unit | x editable text', {
   unit: true
 });
 
