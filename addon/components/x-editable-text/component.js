@@ -1,6 +1,6 @@
-import computed from 'ember-computed';
-import observer from 'ember-metal/observer';
-import run from 'ember-runloop';
+import { computed } from '@ember/object';
+import { observer } from '@ember/object';
+import { run } from '@ember/runloop';
 import XBaseComponent from '../x-base/component';
 import layout from './template';
 
@@ -10,7 +10,7 @@ export default XBaseComponent.extend({
     run.later(() => {
       if (!this.get('isEditing')) {
         if (this.get('value') && this.get('value').length > 0) {
-          let size = this.getTextWidth(this.$('input'), this.get('value'));
+          const size = this.getTextWidth(this.$('input'), this.get('value'));
           this.$('.textContainer').width('68%');
           this.$('input').width(size.width + 10);
           this.$('.borderBottom').width(size.width);

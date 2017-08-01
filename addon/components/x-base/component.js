@@ -1,8 +1,8 @@
 /* globals calculateSize, WebFont */
-import Component from 'ember-component';
-import computed from 'ember-computed';
-import observer from 'ember-metal/observer';
-import run from 'ember-runloop';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { observer } from '@ember/object';
+import { run } from '@ember/runloop';
 
 export default Component.extend({
   tagName: 'span',
@@ -47,9 +47,9 @@ export default Component.extend({
    * @private
    */
   getTextWidth(element, text) {
-    let fontFamily = element.css('font-family');
-    let fontSize = element.css('font-size');
-    let fontWeight = element.css('font-weight');
+    const fontFamily = element.css('font-family');
+    const fontSize = element.css('font-size');
+    const fontWeight = element.css('font-weight');
     return calculateSize(text, {
       font: fontFamily,
       fontSize,
@@ -72,7 +72,7 @@ export default Component.extend({
       this.sendAction('cancelAction');
     },
     saveAction() {
-      let validator = this.get('validator');
+      const validator = this.get('validator');
       // Do any validation here, before saving
       if (validator) {
         this.set('errorMessage', this.get('validator')(this.get('value')));
@@ -89,7 +89,7 @@ export default Component.extend({
   },
   didInsertElement() {
     run.later(() => {
-      let afterRenderLogic = () => {
+      const afterRenderLogic = () => {
         // TODO fix this empty text handling
         // this.handleEmptyTextValue();
         // Store the original value, so we can restore it on cancel click

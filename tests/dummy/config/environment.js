@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   const ENV = {
     modulePrefix: 'dummy',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
