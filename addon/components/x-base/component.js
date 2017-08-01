@@ -1,4 +1,5 @@
 /* globals calculateSize, WebFont */
+import { get, set } from '@ember/object';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { observer } from '@ember/object';
@@ -11,34 +12,92 @@ export default Component.extend({
   mouseInsideComponent: false,
   originalValue: null,
   isValid: computed('errorMessage', function() {
-    return !this.get('errorMessage') ? true : false;
+    return !get(this, 'errorMessage') ? true : false;
   }),
+
   /**
    * Sets the isFieldEditing property to the current isEditing status.
    * This is used to pass isEditing out to the controller, if you need it
    * @private
    */
   setFieldIsEditing: observer('isEditing', function() {
-    this.set('isFieldEditing', this.get('isEditing'));
+    set(this, 'isFieldEditing', get(this, 'isEditing'));
   }),
-  focusIn() {
-    if (this.get('value') === 'Empty') {
-      this.set('value', '');
-    }
-    this.set('isValid', true);
-    this.set('isEditing', true);
+
+  didInsertElement() {
+    run.later(() => {
+      const afterRenderLogic = () => {
+        // TODO fix this empty text handling
+        // this.handleEmptyTextValue();
+        // Store the original value, so we can restore it on cancel click
+        set(this, 'originalValue', get(this, 'value'));
+
+        if (get(this, 'value')) {
+          this.changeUnderlineSize();
+        }
+      };
+
+      // If custom font families are being loaded with @font-face,
+      // we need to wait until the font is loaded to display the inputs
+      if (get(this, 'fontFamilyConfig')) {
+        WebFont.load({
+          custom: {
+            families: get(this, 'fontFamilyConfig')
+          },
+          active: afterRenderLogic
+        });
+      } else {
+        afterRenderLogic();
+      }
+    });
   },
+
+  actions: {
+    cancelAction() {
+      set(this, 'isEditing', false);
+      set(this, 'value', get(this, 'originalValue'));
+      set(this, 'errorMessage', false);
+      this.sendAction('cancelAction');
+    },
+    saveAction() {
+      const validator = get(this, 'validator');
+      // Do any validation here, before saving
+      if (validator) {
+        set(this, 'errorMessage', get(this, 'validator')(get(this, 'value')));
+
+        // If no errors, update the originalValue to be the newly saved value
+        if (!get(this, 'errorMessage')) {
+          set(this, 'originalValue', get(this, 'value'));
+        }
+      } else {
+        set(this, 'originalValue', get(this, 'value'));
+      }
+      this.saveNewValue();
+    }
+  },
+
+  focusIn() {
+    if (get(this, 'value') === 'Empty') {
+      set(this, 'value', '');
+    }
+    set(this, 'isValid', true);
+    set(this, 'isEditing', true);
+  },
+
   focusOut() {
-    if (!this.get('mouseInsideComponent')) {
+    if (!get(this, 'mouseInsideComponent')) {
       this.send('cancelAction');
     }
   },
+
   mouseEnter() {
-    this.set('mouseInsideComponent', true);
+    set(this, 'mouseInsideComponent', true);
   },
+
   mouseLeave() {
-    this.set('mouseInsideComponent', false);
+    set(this, 'mouseInsideComponent', false);
   },
+
   /**
    * Calculate the width of a text string, given the element to grab styles from and the text string
    * @param element The element the text is inside, this is used to get font size, weight, etc
@@ -56,62 +115,13 @@ export default Component.extend({
       fontWeight
     });
   },
+
   saveNewValue() {
     // If no errors, go ahead and save
-    if (!this.get('errorMessage')) {
-      this.set('isEditing', false);
+    if (!get(this, 'errorMessage')) {
+      set(this, 'isEditing', false);
       this.changeUnderlineSize();
       this.sendAction('saveAction');
     }
-  },
-  actions: {
-    cancelAction() {
-      this.set('isEditing', false);
-      this.set('value', this.get('originalValue'));
-      this.set('errorMessage', false);
-      this.sendAction('cancelAction');
-    },
-    saveAction() {
-      const validator = this.get('validator');
-      // Do any validation here, before saving
-      if (validator) {
-        this.set('errorMessage', this.get('validator')(this.get('value')));
-
-        // If no errors, update the originalValue to be the newly saved value
-        if (!this.get('errorMessage')) {
-          this.set('originalValue', this.get('value'));
-        }
-      } else {
-        this.set('originalValue', this.get('value'));
-      }
-      this.saveNewValue();
-    }
-  },
-  didInsertElement() {
-    run.later(() => {
-      const afterRenderLogic = () => {
-        // TODO fix this empty text handling
-        // this.handleEmptyTextValue();
-        // Store the original value, so we can restore it on cancel click
-        this.set('originalValue', this.get('value'));
-
-        if (this.get('value')) {
-          this.changeUnderlineSize();
-        }
-      };
-
-      // If custom font families are being loaded with @font-face,
-      // we need to wait until the font is loaded to display the inputs
-      if (this.get('fontFamilyConfig')) {
-        WebFont.load({
-          custom: {
-            families: this.get('fontFamilyConfig')
-          },
-          active: afterRenderLogic
-        });
-      } else {
-        afterRenderLogic();
-      }
-    });
   }
 });

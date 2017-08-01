@@ -1,3 +1,4 @@
+import { get } from '@ember/object';
 import { observer } from '@ember/object';
 import { run } from '@ember/runloop';
 import XBaseComponent from '../x-base/component';
@@ -7,7 +8,7 @@ export default XBaseComponent.extend({
   layout,
   changeUnderlineSize: observer('isEditing', function() {
     run.later(() => {
-      if (!this.get('isEditing')) {
+      if (!get(this, 'isEditing')) {
         const size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
         this.$('.selectContainer').css('width', 'auto');
         this.$('.selectContainer').height(size.height + 8);

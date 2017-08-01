@@ -1,30 +1,34 @@
 @import 'fonts';
 
 $background1: #323040;
-$background2: #2E2859;
-$lightColor: #AAA3D9;
-$altLightColor: #6E698C;
-$whiteish: #C8C7D5;
+$background2: #2e2859;
+$lightColor: #aaa3d9;
+$altLightColor: #6e698c;
+$whiteish: #c8c7d5;
 
 body {
-  color: $lightColor;
-  margin: 0;
   background-color: $background1;
+  color: $lightColor;
   font-family: $f-primary;
   font-size: 1.75rem;
+  margin: 0;
 }
 
-.textContainer .ember-x-editable-text, .selectContainer .ember-x-editable-select {
+.textContainer .ember-x-editable-text,
+.selectContainer .ember-x-editable-select {
   font-size: 13px;
+
   &::-ms-clear {
     display: none;
-    width: 0;
     height: 0;
+    width: 0;
   }
+
   &.is-editing {
     background-color: $whiteish;
     color: $background2;
   }
+
   &.is-not-editing {
     color: $whiteish;
   }
@@ -34,10 +38,15 @@ h1 {
   font-size: 6vw;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $whiteish;
 }
 
-.pacifico{
+.pacifico {
   font-family: $f-pacifico;
 }

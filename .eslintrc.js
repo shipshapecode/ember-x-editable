@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     'prefer-const': 'error',
 
+    'ember/closure-actions': 'off',
+    'ember/no-observers': 'off',
     'ember/no-old-shims': 'error',
     'ember-suave/no-const-outside-module-scope': 0
   }
