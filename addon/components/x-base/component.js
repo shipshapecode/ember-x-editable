@@ -7,6 +7,7 @@ import { run } from '@ember/runloop';
 
 export default Component.extend({
   tagName: 'span',
+  classNames: ['x-base'],
   errorMessage: false,
   isEditing: false,
   mouseInsideComponent: false,
