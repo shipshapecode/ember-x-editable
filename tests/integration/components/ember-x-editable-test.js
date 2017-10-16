@@ -1,5 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
-import { find, focus, triggerEvent } from 'ember-native-dom-helpers';
+import { click, fillIn, find, focus, triggerEvent } from 'ember-native-dom-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('ember-x-editable', 'Integration | Component | ember x editable', {
@@ -20,4 +20,12 @@ test('Empty value', async function(assert) {
   this.render(hbs`{{x-editable-text validator=validator value=value}}`);
   await focus(find('.x-base div input'));
   assert.equal(this.get('value'), '');
+});
+
+test('No validator passed', async function(assert) {
+  this.set('value', 'foo');
+  this.render(hbs`{{x-editable-text value=value}}`);
+  await fillIn(find('.x-base div input'), '');
+  await click('.editable-submit');
+  assert.equal(this.get('value'), 'Empty');
 });
