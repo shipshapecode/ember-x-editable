@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { skip, test } from 'qunit';
+import { test } from 'qunit';
 import { blur, click, fillIn, find, visit } from 'ember-native-dom-helpers';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
@@ -23,15 +23,16 @@ test('is-editing class applied', async function(assert) {
   assert.equal(find('.ember-x-editable-text').classList.contains('is-editing'), true, 'is-editing class after clicking');
 });
 
-skip('text is saved', async function(assert) {
+test('text is saved', async function(assert) {
   assert.expect(1);
 
   await visit('/');
   await click('.ember-x-editable-text');
   await fillIn('.ember-x-editable-text', 'New test string');
-  await click('.editable-buttons .editable-submit');
-
-  assert.equal(find('.ember-x-editable-text').value, 'New test string', 'text is saved');
+  $('.editable-buttons .editable-submit').click();
+  andThen(function() {
+    assert.equal(find('.ember-x-editable-text', 'html').value, 'New test string', 'text is saved');
+  });
 });
 
 test('text is cancelled, cancel button', async function(assert) {
