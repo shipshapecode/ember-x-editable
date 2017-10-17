@@ -10,7 +10,8 @@ body {
   background-color: $background1;
   color: $lightColor;
   font-family: $f-primary;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
+  line-height: 1.25;
   margin: 0;
 }
 
@@ -45,6 +46,7 @@ h4,
 h5,
 h6 {
   color: $whiteish;
+  margin: 0.25rem 0;
 }
 
 .pacifico {

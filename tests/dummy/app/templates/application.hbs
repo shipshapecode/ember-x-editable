@@ -1,52 +1,61 @@
-<div class="row">
-  <div class="col-sm-12 text-center">
-    <h1><span class="pacifico">ember</span> x-editable</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    Ember-x-editable is an "x-editable like" Ember addon. It doesn not wrap the actual x-editable library,
+<centered>
+  <h1><span class="pacifico">ember</span> x-editable</h1>
+</centered>
+
+<hbox justify="center">
+  <hbox xs="10" sm="6">
+    Ember-x-editable is an "x-editable like" Ember addon. It does not wrap the actual x-editable library,
     but was inspired by it. It provides much less functionality than the full x-editable. This was created because
     x-editable did not play nicely with Ember.
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-12 text-center">
-    <h2>Demo</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h2>Text</h2>
-    {{#ember-x-editable
-      cancelAction='cancelAction'
-      fontFamilyConfig=fontFamilyConfig
-      isFieldEditing=isFieldEditing
-      saveAction='saveAction'
-      validator=textValidator
-      value=textValue as |x|
-    }}
-      {{x.text}}
-    {{/ember-x-editable}}
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h2>Select</h2>
-    {{#ember-x-editable
-      cancelAction='cancelAction'
-      changeAction='changeAction'
-      content=selectContent
-      fontFamilyConfig=fontFamilyConfig
-      isFieldEditing=isFieldEditing
-      saveAction='saveAction'
-      validator=selectValidator
-      value=selectValue as |x|
-    }}
-      {{x.select}}
-    {{/ember-x-editable}}
-  </div>
-</div>
+  </hbox>
+</hbox>
+
+<centered>
+  <h2>Demo</h2>
+</centered>
+
+<hbox justify="center">
+  <hbox xs="10" sm="6">
+    <hbox xs="12">
+      <h2>Text</h2>
+    </hbox>
+
+    <hbox xs="12">
+      {{#ember-x-editable
+        cancelAction='cancelAction'
+        fontFamilyConfig=fontFamilyConfig
+        isFieldEditing=isFieldEditing
+        saveAction='saveAction'
+        validator=textValidator
+        value=textValue as |x|
+      }}
+        {{x.text}}
+      {{/ember-x-editable}}
+    </hbox>
+  </hbox>
+</hbox>
+<hbox justify="center">
+  <hbox xs="10" sm="6">
+    <hbox xs="12">
+      <h2>Select</h2>
+    </hbox>
+
+    <hbox xs="12">
+      {{#ember-x-editable
+        cancelAction='cancelAction'
+        changeAction='changeAction'
+        content=selectContent
+        fontFamilyConfig=fontFamilyConfig
+        isFieldEditing=isFieldEditing
+        saveAction='saveAction'
+        validator=selectValidator
+        value=selectValue as |x|
+      }}
+        {{x.select}}
+      {{/ember-x-editable}}
+    </hbox>
+  </hbox>
+</hbox>
 <br>
 <div class="row">
   <a href="https://github.com/shipshapecode/ember-x-editable"

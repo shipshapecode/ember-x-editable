@@ -11,9 +11,9 @@ export default XBaseComponent.extend({
       if (!get(this, 'isEditing')) {
         const size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
         this.$('.selectContainer').css('width', 'auto');
-        this.$('.selectContainer').height(size.height + 8);
+        this.$('.selectContainer').height(size.height + 16);
         this.$('select').width(size.width);
-        this.$('select').height(size.height + 7);
+        this.$('select').height(size.height + 11);
         this.$('.borderBottom').css('width', size.width);
       } else {
         this.$('.selectContainer').css('width', '68%');

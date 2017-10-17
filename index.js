@@ -12,7 +12,7 @@ module.exports = {
     }
   },
 
-  included: function(app) {
+  included() {
     this._super.included.apply(this, arguments);
 
     if (!process.env.EMBER_CLI_FASTBOOT) {

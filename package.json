@@ -32,6 +32,10 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "@html-next/flexi-config": "^2.0.0",
+    "@html-next/flexi-default-styles": "^2.0.1",
+    "@html-next/flexi-dsl": "^2.0.1",
+    "@html-next/flexi-layouts": "^2.0.1",
     "babel-eslint": "^8.0.0",
     "broccoli-asset-rev": "^2.4.5",
     "codeclimate-test-reporter": "^0.5.0",
@@ -62,6 +66,7 @@
     "ember-truth-helpers": "2.0.0",
     "eslint-plugin-ember": "^4.0.0",
     "eslint-plugin-ember-suave": "^1.0.0",
+    "flexi": "^2.0.1",
     "loader.js": "^4.2.3",
     "stylelint-config-ship-shape": "^0.1.0",
     "stylelint-config-standard": "^17.0.0"

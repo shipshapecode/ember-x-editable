@@ -1,5 +1,6 @@
 .borderBottom {
   border-bottom: dashed 1px #0088cc;
+  bottom: 7px;
   height: 2px;
   left: 0;
   position: relative;
@@ -27,10 +28,6 @@
 
 .textContainer {
   display: inline-block;
-
-  .borderBottom {
-    bottom: 7px;
-  }
 
   .ember-x-editable-text {
     font-size: 12.5px;
@@ -75,10 +72,6 @@
   overflow: hidden;
   position: relative;
   width: auto;
-
-  .borderBottom {
-    bottom: 5px;
-  }
 
   .ember-x-editable-select {
     font-size: 12.5px;

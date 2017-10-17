@@ -1,6 +1,5 @@
 {
   "name": "ember-x-editable",
   "dependencies": {
-    "bootstrap": "~3.3"
   }
 }
