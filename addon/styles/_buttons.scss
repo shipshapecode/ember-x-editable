@@ -1,4 +1,5 @@
 $blue: #007bff !default;
+$gray-100: #f8f9fa !default;
 
 $enable-hover-media-query: false !default;
 $enable-rounded: true !default;
@@ -114,8 +115,16 @@ fieldset[disabled] a.btn {
   @include button-variant($blue, $blue);
 }
 
+.btn-default {
+  @include button-variant($gray-100, $gray-100);
+}
+
 .btn-outline-primary {
   @include button-outline-variant($blue, $white);
+}
+
+.btn-outline-default {
+  @include button-outline-variant($gray-100, $white);
 }
 
 //
