@@ -51,7 +51,7 @@
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-shims": "^1.1.0",
-    "ember-cli-stylelint": "^0.15.0",
+    "ember-cli-stylelint": "^1.0.0",
     "ember-cli-template-lint": "^0.7.1",
     "ember-cli-uglify": "^2.0.0",
     "ember-debonair": "^0.4.4",
