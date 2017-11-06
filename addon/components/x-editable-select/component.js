@@ -8,17 +8,22 @@ export default XBaseComponent.extend({
   layout,
   changeUnderlineSize: observer('isEditing', function() {
     run.later(() => {
+      const borderBottom = this.element.querySelector('.borderBottom');
+      const select = this.element.querySelector('select');
+      const selectContainer = this.element.querySelector('.selectContainer');
+      const { text } = select.options[select.selectedIndex];
+
       if (!get(this, 'isEditing')) {
-        const size = this.getTextWidth(this.$('select'), this.$('select option:selected').text());
-        this.$('.selectContainer').css('width', 'auto');
-        this.$('.selectContainer').height(size.height + 16);
-        this.$('select').width(size.width);
-        this.$('select').height(size.height + 11);
-        this.$('.borderBottom').css('width', size.width);
+        const size = this.getTextWidth(select, text);
+        selectContainer.style.width = 'auto';
+        selectContainer.style.height = `${size.height + 16}px`;
+        select.style.width = `${size.width + 2}px`;
+        select.style.height = `${size.height + 11}px`;
+        borderBottom.style.width = size.width;
       } else {
-        this.$('.selectContainer').css('width', '68%');
-        this.$('.selectContainer').height('auto');
-        this.$('select').css('width', '100%');
+        selectContainer.style.width = '68%';
+        selectContainer.style.height = 'auto';
+        select.style.width = '100%';
       }
     });
   })

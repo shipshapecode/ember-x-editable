@@ -25,17 +25,20 @@ export default XBaseComponent.extend({
     run.later(() => {
       if (!get(this, 'isEditing')) {
         if (get(this, 'value') && get(this, 'value').length > 0) {
-          const size = this.getTextWidth(this.$('input'), get(this, 'value'));
-          this.$('.textContainer').width('68%');
-          this.$('input').width(size.width + 10);
-          this.$('.borderBottom').width(size.width);
+          const borderBottom = this.element.querySelector('.borderBottom');
+          const input = this.element.querySelector('input');
+          const textContainer = this.element.querySelector('.textContainer');
+          const size = this.getTextWidth(input, get(this, 'value'));
+          textContainer.style.width = '68%';
+          input.style.width = `${size.width + 10}px`;
+          borderBottom.style.width = `${size.width + 3}px`;
         }
       }
     });
   }),
 
   makeFullWidthWhenEditing: observer('isEditing', function() {
-    this.$('input').width('100%');
+    this.element.querySelector('input').style.width = '100%';
   }),
 
   actions: {

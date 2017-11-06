@@ -107,9 +107,10 @@ export default Component.extend({
    * @private
    */
   getTextWidth(element, text) {
-    const fontFamily = element.css('font-family');
-    const fontSize = element.css('font-size');
-    const fontWeight = element.css('font-weight');
+    const styles = getComputedStyle(element);
+    const fontFamily = styles['font-family'];
+    const fontSize = styles['font-size'];
+    const fontWeight = styles['font-weight'];
     return calculateSize(text, {
       font: fontFamily,
       fontSize,
