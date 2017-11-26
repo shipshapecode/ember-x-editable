@@ -69,7 +69,7 @@
     "flexi": "^2.0.1",
     "loader.js": "^4.2.3",
     "stylelint-config-ship-shape": "^0.1.0",
-    "stylelint-config-standard": "^17.0.0"
+    "stylelint-config-standard": "^18.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
