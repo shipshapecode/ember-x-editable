@@ -1,3 +1,4 @@
+/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 import { A } from '@ember/array';
 import Controller from '@ember/controller';
 import Validators from '../utils/validators';

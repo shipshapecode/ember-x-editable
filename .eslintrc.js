@@ -4,20 +4,54 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
+  plugins: [
+    'ember'
+  ],
   extends: [
     'eslint:recommended',
-    'plugin:ember/base',
-    'plugin:ember-suave/recommended'
+    'plugin:ember/recommended'
   ],
   env: {
     browser: true
   },
   rules: {
-    'prefer-const': 'error',
+    'ember/closure-actions': 'off'
+  },
+  overrides: [
+    // node files
+    {
+      files: [
+        'index.js',
+        'testem.js',
+        'ember-cli-build.js',
+        'config/**/*.js',
+        'tests/dummy/config/**/*.js'
+      ],
+      excludedFiles: [
+        'app/**',
+        'addon/**'
+      ],
+      parserOptions: {
+        sourceType: 'script',
+        ecmaVersion: 2015
+      },
+      env: {
+        browser: false,
+        node: true
+      },
+      plugins: ['node'],
+      rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
+        // add your custom rules and overrides for node files here
+      })
+    },
 
-    'ember/closure-actions': 'off',
-    'ember/no-observers': 'off',
-    'ember/no-old-shims': 'error',
-    'ember-suave/no-const-outside-module-scope': 0
-  }
+    // test files
+    {
+      files: ['tests/**/*.js'],
+      excludedFiles: ['tests/dummy/**/*.js'],
+      env: {
+        embertest: true
+      }
+    }
+  ]
 };
