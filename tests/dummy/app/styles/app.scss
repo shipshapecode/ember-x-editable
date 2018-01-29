@@ -2,13 +2,13 @@
 
 $background1: #323040;
 $background2: #2e2859;
-$lightColor: #aaa3d9;
-$altLightColor: #6e698c;
+$light-color: #aaa3d9;
+$alt-light-color: #6e698c;
 $whiteish: #c8c7d5;
 
 body {
   background-color: $background1;
-  color: $lightColor;
+  color: $light-color;
   font-family: $f-primary;
   font-size: 1.25rem;
   line-height: 1.25;
