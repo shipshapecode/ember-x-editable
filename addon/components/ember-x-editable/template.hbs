@@ -2,6 +2,7 @@
   <div class="form-inline editableform">
     {{yield (hash
               select=(component 'x-editable-select' content=content validator=validator value=value)
-              text=(component 'x-editable-text' validator=validator value=value))}}
+              text=(component 'x-editable-text' validator=validator value=value)
+              textarea=(component 'x-editable-textarea' validator=validator value=value))}}
   </div>
 </div>
