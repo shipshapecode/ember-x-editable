@@ -3,5 +3,5 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  classNameBindings: ['editable-container', 'editable-inline']
+  classNames: ['editable-container', 'editable-inline']
 });

@@ -1,3 +1,4 @@
+@import 'ember-bootstrap/bootstrap';
 @import 'fonts';
 
 $background1: #323040;
@@ -10,8 +11,7 @@ body {
   background-color: $background1;
   color: $light-color;
   font-family: $f-primary;
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: 1.75rem;
   margin: 0;
 }
 
