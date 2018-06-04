@@ -22,14 +22,15 @@
 
     <hbox xs="12">
       {{#ember-x-editable
-        cancelAction='cancelAction'
         fontFamilyConfig=fontFamilyConfig
         isFieldEditing=isFieldEditing
-        saveAction='saveAction'
         validator=textValidator
         value=textValue as |x|
       }}
-        {{x.text}}
+        {{x.text
+          cancelAction=(action 'cancelAction')
+          saveAction=(action 'saveAction')
+        }}
       {{/ember-x-editable}}
     </hbox>
   </hbox>
@@ -42,16 +43,16 @@
 
     <hbox xs="12">
       {{#ember-x-editable
-        cancelAction='cancelAction'
-        changeAction='changeAction'
         content=selectContent
         fontFamilyConfig=fontFamilyConfig
         isFieldEditing=isFieldEditing
-        saveAction='saveAction'
         validator=selectValidator
         value=selectValue as |x|
       }}
-        {{x.select}}
+        {{x.select
+          cancelAction=(action 'cancelAction')
+          saveAction=(action 'saveAction')
+        }}
       {{/ember-x-editable}}
     </hbox>
   </hbox>

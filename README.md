@@ -27,13 +27,14 @@ http://shipshapecode.github.io/ember-x-editable/
 ### Text Inputs
 ```hbs
 {{#ember-x-editable
-cancelAction='cancelAction'
 fontFamilyConfig=fontFamilyConfig
 isFieldEditing=isFieldEditing
-saveAction='saveAction'
 validator=textValidator
 value='TestString' as |x|}}
-  {{x.text}}
+  {{x.text
+    cancelAction=(action 'cancelAction')
+    saveAction=(action 'saveAction')
+  }}
 {{/ember-x-editable}}
 ```
 - ```cancelAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the cancel x.
@@ -46,14 +47,15 @@ value='TestString' as |x|}}
 ### Dropdown (Select)
 ```hbs
 {{#ember-x-editable
-cancelAction='cancelAction'
 content=selectContent
 fontFamilyConfig=fontFamilyConfig
 isFieldEditing=isFieldEditing
-saveAction='saveAction'
 validator=selectValidator
 value=2 as |x|}}
-  {{x.select}}
+  {{x.select
+    cancelAction=(action 'cancelAction')
+    saveAction=(action 'saveAction')
+  }}
 {{/ember-x-editable}}
 ```
 - ```cancelAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the cancel x.
