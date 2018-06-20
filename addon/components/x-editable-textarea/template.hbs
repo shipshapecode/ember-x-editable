@@ -1,7 +1,8 @@
-<div class="textContainer">
+<div class="textContainer textareaContainer">
   {{textarea
-    classNameBindings=":ember-x-editable-text :input-sm isEditing:is-editing:is-not-editing errorMessage:error"
-    type="text"
+    classNames="ember-x-editable-textarea input-sm"
+    classNameBindings="isEditing:is-editing:is-not-editing errorMessage:error"
+    rows="1"
     value=value}}
 
   {{error-message errorMessage=errorMessage isEditing=isEditing tagName=''}}

@@ -26,6 +26,8 @@ export default Component.extend({
   }),
 
   didInsertElement() {
+    this._super(...arguments);
+
     run.later(() => {
       const afterRenderLogic = () => {
         // TODO fix this empty text handling
@@ -35,6 +37,12 @@ export default Component.extend({
 
         if (get(this, 'value')) {
           this.changeUnderlineSize();
+        }
+
+        const textarea = this.element.querySelector('textarea');
+        if (textarea) {
+          textarea.style.height = '1px';
+          textarea.style.height = `${textarea.scrollHeight}px`;
         }
       };
 

@@ -27,7 +27,7 @@ export default XBaseComponent.extend({
         if (get(this, 'value') && get(this, 'value').length > 0) {
           const borderBottom = this.element.querySelector('.borderBottom');
           const textarea = this.element.querySelector('textarea');
-          const textContainer = this.element.querySelector('.textContainer');
+          const textContainer = this.element.querySelector('.textareaContainer');
           const size = this.getTextWidth(textarea, get(this, 'value'));
           textContainer.style.width = '68%';
           textarea.style.width = `${size.width + 10}px`;
@@ -40,6 +40,14 @@ export default XBaseComponent.extend({
   makeFullWidthWhenEditing: observer('isEditing', function() {
     this.element.querySelector('textarea').style.width = '100%';
   }),
+
+  focusOut() {
+    const textarea = this.element.querySelector('textarea');
+    textarea.style.height = '1px';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+
+    this._super(...arguments);
+  },
 
   actions: {
     saveAction() {
