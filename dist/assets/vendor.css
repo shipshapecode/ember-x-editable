@@ -1,0 +1,292 @@
+/* Fix for https://github.com/kaliber5/ember-bootstrap/issues/355 */
+.panel-heading[role='tab'] {
+    cursor: pointer;
+}
+
+/*
+we need to override this for BS3 popovers as they are `display: none` be default, and we use popper.js instead of
+proprietary display and positioning logic
+*/
+.ember-bootstrap-popover.popover {
+    display: block;
+}
+
+/**
+arrow placement with popper.js will take margins into account
+(see https://github.com/FezVrasta/popper.js/blob/e80f27c85bdaa8ef7d700f936e536bb43aea9b53/packages/popper/src/utils/getOuterSizes.js#L9-L15)
+So we need to reset them here, otherwise arrow positioning will be slightly off
+ */
+.ember-bootstrap-tooltip.tooltip.top .tooltip-arrow,
+ .ember-bootstrap-tooltip.tooltip.bottom .tooltip-arrow {
+     margin-left: 0;
+ }
+
+.ember-bootstrap-tooltip.tooltip.left .tooltip-arrow,
+.ember-bootstrap-tooltip.tooltip.right .tooltip-arrow {
+    margin-top: 0;
+}
+
+.ember-bootstrap-popover.popover.top .arrow,
+.ember-bootstrap-popover.popover.bottom .arrow {
+    margin-left: 0;
+}
+
+.ember-bootstrap-popover.popover.left .arrow,
+.ember-bootstrap-popover.popover.right .arrow {
+    margin-top: 0;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+  .btn:focus, .btn:hover {
+    text-decoration: none; }
+  .btn:focus, .btn.focus {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); }
+  .btn.disabled, .btn:disabled {
+    opacity: .65; }
+  .btn:not([disabled]):not(.disabled):active, .btn:not([disabled]):not(.disabled).active {
+    background-image: none; }
+
+a.btn.disabled,
+fieldset[disabled] a.btn {
+  pointer-events: none; }
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff; }
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc; }
+  .btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); }
+  .btn-primary.disabled, .btn-primary:disabled {
+    background-color: #007bff;
+    border-color: #007bff; }
+  .btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active,
+  .show > .btn-primary.dropdown-toggle {
+    background-color: #0069d9;
+    background-image: none;
+    border-color: #0062cc; }
+
+.btn-default {
+  color: #111;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa; }
+  .btn-default:hover {
+    color: #111;
+    background-color: #e2e6ea;
+    border-color: #dae0e5; }
+  .btn-default:focus, .btn-default.focus {
+    box-shadow: 0 0 0 3px rgba(248, 249, 250, 0.5); }
+  .btn-default.disabled, .btn-default:disabled {
+    background-color: #f8f9fa;
+    border-color: #f8f9fa; }
+  .btn-default:not([disabled]):not(.disabled):active, .btn-default:not([disabled]):not(.disabled).active,
+  .show > .btn-default.dropdown-toggle {
+    background-color: #e2e6ea;
+    background-image: none;
+    border-color: #dae0e5; }
+
+.btn-outline-primary {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff; }
+  .btn-outline-primary:hover {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff; }
+  .btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); }
+  .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: #007bff;
+    background-color: transparent; }
+  .btn-outline-primary:not([disabled]):not(.disabled):active, .btn-outline-primary:not([disabled]):not(.disabled).active,
+  .show > .btn-outline-primary.dropdown-toggle {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff; }
+
+.btn-outline-default {
+  color: #f8f9fa;
+  background-color: transparent;
+  background-image: none;
+  border-color: #f8f9fa; }
+  .btn-outline-default:hover {
+    color: #ffffff;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa; }
+  .btn-outline-default:focus, .btn-outline-default.focus {
+    box-shadow: 0 0 0 3px rgba(248, 249, 250, 0.5); }
+  .btn-outline-default.disabled, .btn-outline-default:disabled {
+    color: #f8f9fa;
+    background-color: transparent; }
+  .btn-outline-default:not([disabled]):not(.disabled):active, .btn-outline-default:not([disabled]):not(.disabled).active,
+  .show > .btn-outline-default.dropdown-toggle {
+    color: #ffffff;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa; }
+
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  background-color: transparent; }
+  .btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent; }
+  .btn-link:focus, .btn-link.focus {
+    border-color: transparent;
+    box-shadow: none; }
+  .btn-link:disabled, .btn-link.disabled {
+    color: #868e96; }
+
+.btn-lg {
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem; }
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem; }
+
+.btn-block {
+  display: block;
+  width: 100%; }
+
+.btn-block + .btn-block {
+  margin-top: 0.5rem; }
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%; }
+
+.borderBottom {
+  border-bottom: dashed 1px #0088cc;
+  bottom: 7px;
+  height: 2px;
+  left: 0;
+  position: relative; }
+
+.shouldNotDisplay {
+  display: none; }
+
+.editable-buttons {
+  display: inline-block;
+  margin-left: 7px;
+  vertical-align: top;
+  zoom: 1; }
+
+.editable-container .editable-inline {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  zoom: 1; }
+
+.textContainer,
+.textareaContainer {
+  display: inline-block; }
+  .textContainer .ember-x-editable-text,
+  .textContainer .ember-x-editable-textarea,
+  .textareaContainer .ember-x-editable-text,
+  .textareaContainer .ember-x-editable-textarea {
+    font-size: 12.5px; }
+    .textContainer .ember-x-editable-text::-ms-clear,
+    .textContainer .ember-x-editable-textarea::-ms-clear,
+    .textareaContainer .ember-x-editable-text::-ms-clear,
+    .textareaContainer .ember-x-editable-textarea::-ms-clear {
+      display: none;
+      height: 0;
+      width: 0; }
+    .textContainer .ember-x-editable-text.is-editing,
+    .textContainer .ember-x-editable-textarea.is-editing,
+    .textareaContainer .ember-x-editable-text.is-editing,
+    .textareaContainer .ember-x-editable-textarea.is-editing {
+      background: white;
+      padding: 4px 5px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      width: 100%; }
+      .textContainer .ember-x-editable-text.is-editing.error,
+      .textContainer .ember-x-editable-textarea.is-editing.error,
+      .textareaContainer .ember-x-editable-text.is-editing.error,
+      .textareaContainer .ember-x-editable-textarea.is-editing.error {
+        border: 1px solid red; }
+    .textContainer .ember-x-editable-text.is-not-editing,
+    .textContainer .ember-x-editable-textarea.is-not-editing,
+    .textareaContainer .ember-x-editable-text.is-not-editing,
+    .textareaContainer .ember-x-editable-textarea.is-not-editing {
+      background: transparent;
+      border: none;
+      border-color: transparent;
+      cursor: pointer;
+      font-weight: 700;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      padding: 4px 1px; }
+    .textContainer .ember-x-editable-text.is-empty,
+    .textContainer .ember-x-editable-textarea.is-empty,
+    .textareaContainer .ember-x-editable-text.is-empty,
+    .textareaContainer .ember-x-editable-textarea.is-empty {
+      font-style: italic; }
+
+.textareaContainer {
+  overflow: scroll;
+  width: 100%; }
+  .textareaContainer .ember-x-editable-textarea {
+    overflow: scroll;
+    width: 100%; }
+    .textareaContainer .ember-x-editable-textarea.is-editing {
+      resize: both; }
+    .textareaContainer .ember-x-editable-textarea.is-not-editing {
+      resize: none;
+      white-space: nowrap; }
+
+.selectContainer {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  width: auto; }
+  .selectContainer .ember-x-editable-select {
+    font-size: 12.5px; }
+    .selectContainer .ember-x-editable-select.is-editing {
+      background: white;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      padding: 0 10px;
+      width: 100%; }
+    .selectContainer .ember-x-editable-select.is-not-editing {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -webkit-box-shadow: none;
+      background: transparent;
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+      font-weight: 700;
+      overflow: hidden;
+      padding: 2px 1px;
+      width: 120%; }
+
+/*# sourceMappingURL=ember-x-editable.css.map */
