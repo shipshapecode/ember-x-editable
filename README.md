@@ -44,6 +44,26 @@ value='TestString' as |x|}}
 - ```validator``` (optional) a function reference to execute against the content string before saving
 - ```value``` a string of text to display 
 
+### Textarea
+```hbs
+{{#ember-x-editable
+fontFamilyConfig=fontFamilyConfig
+isFieldEditing=isFieldEditing
+validator=textareaValidator
+value='Textarea test value' as |x|}}
+  {{x.textarea
+    cancelAction=(action 'cancelAction')
+    saveAction=(action 'saveAction')
+  }}
+{{/ember-x-editable}}
+```
+- ```cancelAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the cancel x.
+- ```fontFamilyConfig``` an array of custom font families that will be passed to the font loader and ensured to be loaded and used for calculating the width of the text in pixels
+- ```isFieldEditing``` a boolean variable that allows you to access the isEditing value outside of the component
+- ```saveAction``` a string representing the action on the controller that you want to execute whenever the user clicks the save check mark.
+- ```validator``` (optional) a function reference to execute against the content string before saving
+- ```value``` a string of text to display 
+
 ### Dropdown (Select)
 ```hbs
 {{#ember-x-editable
