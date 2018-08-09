@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { test } from 'qunit';
-import { blur, click, fillIn, find, visit } from 'ember-native-dom-helpers';
+import { blur, click, fillIn, find, visit } from '@ember/test-helpers';
 import moduleForAcceptance from '../helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | ember-x-editable');

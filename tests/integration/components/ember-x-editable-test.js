@@ -1,5 +1,5 @@
 import { moduleForComponent, test } from 'ember-qunit';
-import { click, fillIn, find, focus, triggerEvent } from 'ember-native-dom-helpers';
+import { click, fillIn, find, focus, triggerEvent } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('ember-x-editable', 'Integration | Component | ember x editable', {
