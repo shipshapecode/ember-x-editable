@@ -31,7 +31,7 @@ module('Acceptance | ember-x-editable', function(hooks) {
     await click('.ember-x-editable-text');
     await fillIn('.ember-x-editable-text', 'New test string');
     $('.editable-buttons .editable-submit').click();
-    assert.equal(find('.ember-x-editable-text', 'html').value, 'New test string', 'text is saved');
+    assert.equal(find('.ember-x-editable-text').value, 'New test string', 'text is saved');
   });
 
   test('text is cancelled, cancel button', async function(assert) {

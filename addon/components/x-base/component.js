@@ -66,7 +66,10 @@ export default Component.extend({
       set(this, 'isEditing', false);
       set(this, 'value', get(this, 'originalValue'));
       set(this, 'errorMessage', false);
-      this.sendAction('cancelAction');
+
+      if(typeof this.cancelAction === 'function') {
+        this.cancelAction();
+      }
     },
     saveAction() {
       const validator = get(this, 'validator');
@@ -89,7 +92,7 @@ export default Component.extend({
     if (get(this, 'value') === 'Empty') {
       set(this, 'value', '');
     }
-    set(this, 'isValid', true);
+    set(this, 'errorMessage', false);
     set(this, 'isEditing', true);
   },
 
@@ -131,7 +134,10 @@ export default Component.extend({
     if (!get(this, 'errorMessage')) {
       set(this, 'isEditing', false);
       this.changeUnderlineSize();
-      this.sendAction('saveAction');
+
+      if(typeof this.saveAction === 'function') {
+        this.saveAction();
+      }
     }
   }
 });

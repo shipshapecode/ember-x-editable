@@ -16,11 +16,26 @@ If you would like to add functionality, please feel free to submit a PR.
 
 Currently, Bootstrap is bundled with this addon. Eventually, I'd like to just add a dependency on the ember bootstrap addon, or allow it to work without bootstrap. This addon also only works with HTMLBars and Ember 1.11+.
 
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
+```
+ember install ember-x-editable
+```
+
 ## Demo
 [![Ember-x-editable demo](http://i.imgur.com/6vVQp6s.png)](http://shipshapecode.github.io/ember-x-editable/)
 http://shipshapecode.github.io/ember-x-editable/
 
-## Usage
+Usage
+------------------------------------------------------------------------------
 
 **NOTE**: This addon now uses contextual components, so if you were using it previously, and you update, you will need to fix things.
 
@@ -73,8 +88,8 @@ isFieldEditing=isFieldEditing
 validator=selectValidator
 value=2 as |x|}}
   {{x.select
-    cancelAction=(action 'cancelAction')
-    saveAction=(action 'saveAction')
+    cancelAction=(action "cancelAction")
+    saveAction=(action "saveAction")
   }}
 {{/ember-x-editable}}
 ```
@@ -85,3 +100,14 @@ value=2 as |x|}}
 - ```saveAction``` (optional) a string representing the action on the controller that you want to execute whenever the user clicks the save check mark.
 - ```validator``` (optional) a function reference to execute against the content string before saving
 - ```value``` the 'value' of the object in the content array that should be selected
+
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).

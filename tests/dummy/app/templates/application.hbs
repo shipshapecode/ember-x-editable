@@ -25,8 +25,8 @@
       value=textValue as |x|
     }}
       {{x.text
-        cancelAction=(action 'cancelAction')
-        saveAction=(action 'saveAction')
+        cancelAction=(action "cancelAction")
+        saveAction=(action "saveAction")
       }}
     {{/ember-x-editable}}
   </div>
@@ -36,15 +36,15 @@
   <div class="col-sm-6 col-sm-offset-3">
     <h2>Select</h2>
     {{#ember-x-editable
-      content=selectContent
+      content=(readonly selectContent)
       fontFamilyConfig=fontFamilyConfig
       isFieldEditing=isFieldEditing
       validator=selectValidator
       value=selectValue as |x|
     }}
       {{x.select
-        cancelAction=(action 'cancelAction')
-        saveAction=(action 'saveAction')
+        cancelAction=(action "cancelAction")
+        saveAction=(action "saveAction")
       }}
     {{/ember-x-editable}}
   </div>
@@ -59,8 +59,8 @@
       value=textareaValue as |x|
     }}
       {{x.textarea
-        cancelAction=(action 'cancelAction')
-        saveAction=(action 'saveAction')
+        cancelAction=(action "cancelAction")
+        saveAction=(action "saveAction")
       }}
     {{/ember-x-editable}}
   </div>

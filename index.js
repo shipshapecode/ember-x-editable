@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-x-editable',
+  name: require('./package').name,
 
   options: {
     nodeAssets: {
