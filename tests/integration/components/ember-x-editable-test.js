@@ -9,9 +9,9 @@ module('Integration | Component | ember x editable', function(hooks) {
   test('mouseEnter/mouseLeave', async function(assert) {
     this.set('mouseInsideComponent', false);
     await render(hbs`{{x-editable-text mouseInsideComponent=mouseInsideComponent validator=validator value=value}}`);
-    await triggerEvent(find('.x-base'), 'mouseover');
+    await triggerEvent(find('.x-base'), 'mouseenter');
     assert.equal(this.get('mouseInsideComponent'), true);
-    await triggerEvent(find('.x-base'), 'mouseout');
+    await triggerEvent(find('.x-base'), 'mouseleave');
     assert.equal(this.get('mouseInsideComponent'), false);
   });
 

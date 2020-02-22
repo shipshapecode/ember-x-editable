@@ -25,8 +25,23 @@ export default Component.extend({
     set(this, 'isFieldEditing', get(this, 'isEditing'));
   }),
 
+  init() {
+    this._super(...arguments);
+
+    this.handleMouseEnter = () => {
+      set(this, 'mouseInsideComponent', true);
+    };
+  
+    this.handleMouseLeave = () => {
+      set(this, 'mouseInsideComponent', false);
+    };
+  },
+
   didInsertElement() {
     this._super(...arguments);
+
+    this.element.addEventListener('mouseenter', this.handleMouseEnter);
+    this.element.addEventListener('mouseleave', this.handleMouseLeave);
 
     run.later(() => {
       const afterRenderLogic = () => {
@@ -59,6 +74,13 @@ export default Component.extend({
         afterRenderLogic();
       }
     });
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+
+    this.element.removeEventListener('mouseenter', this.handleMouseEnter);
+    this.element.removeEventListener('mouseleave', this.handleMouseLeave);
   },
 
   actions: {
@@ -100,14 +122,6 @@ export default Component.extend({
     if (!get(this, 'mouseInsideComponent')) {
       this.send('cancelAction');
     }
-  },
-
-  mouseEnter() {
-    set(this, 'mouseInsideComponent', true);
-  },
-
-  mouseLeave() {
-    set(this, 'mouseInsideComponent', false);
   },
 
   /**
