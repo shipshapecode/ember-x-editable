@@ -2,12 +2,9 @@ import { get, set } from '@ember/object';
 import { computed } from '@ember/object';
 import { observer } from '@ember/object';
 import { run } from '@ember/runloop';
-import XBaseComponent from '../x-base/component';
-import layout from './template';
+import XBaseComponent from '../x-base';
 
 export default XBaseComponent.extend({
-  layout,
-
   /**
    * This is a computed property for adding/removing the is-empty class
    * @private
